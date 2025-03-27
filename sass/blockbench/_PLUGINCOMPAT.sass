@@ -1,0 +1,39 @@
+@use "../foundation/styles"
+
+// TODO: Plugin compatabillity code flattening
+.preview-scene-links
+    order: 4
+.spacer
+    display: none
+
+.cem-template-loader-links, .preview-scene-links
+    margin: 12px
+    margin-inline: 5%
+    gap: 6px
+    order: 10
+
+    & > a
+        @include styles.clickable($sunken: false, $subtle: true)
+        background-color: transparent
+        flex-direction: row
+
+        & > i
+            font-size: 16px
+            width: auto
+            height: 16px
+            color: var(--color-accent) !important
+
+        & > p
+            flex: 1
+        &:hover
+            background-color: transparent
+
+#format_page_minecraft_block_wizard,
+#format_page_minecraft_item_wizard,
+#format_page_minecraft_entity_wizard
+    & content
+        margin-top: 0
+        & > label
+            margin-bottom: 0
+        img
+            margin: 0

@@ -1,0 +1,550 @@
+@use "../foundation/_styles"
+
+// General Dialogs
+
+.dialog
+    color: #222222
+    // hardcode border for now
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff
+    padding: 3px
+    max-height: none
+
+    &:not(.resizable)
+        min-width: min(400px, 100%)
+        max-width: min(600px, 100%)
+
+    &_handle
+        color: white
+        background: var(--dialog-blue)
+        height: 20px
+        display: flex
+        cursor: default
+        .dialog_title
+            font-size: 11px
+            padding-left: 0
+            line-height: 1.5
+        // Icon: set per dialog
+        &::before
+            content: ""
+            display: inline-block
+            width: 16px
+            height: 16px
+            margin-top: 2px
+            margin-right: 4px
+            // Fallback icon
+            background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAElBMVEUAAACAgIDAwMAAAAAAAL////9BqKHzAAAAAXRSTlMAQObYZgAAAAFiS0dEBfhv6ccAAAAHdElNRQfiBhgXBwYy/hz+AAAALklEQVQI12NggAFBKGAQUgIDYQYhFzCAMIKDg4EMiBIgIxQMyGUIwswxhgK4KwAByRbDJCOQ1wAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNi0yNFQyMzowNzowNi0wNDowMNp4XPYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDYtMjRUMjM6MDc6MDYtMDQ6MDCrJeRKAAAAAElFTkSuQmCC")
+            background-repeat: no-repeat
+            background-size: 16px 16px
+
+    &_sidebar
+        flex-direction: column-reverse
+        grid-area: top
+        min-height: 28px
+        overflow: visible
+        padding: 0 12px
+        background-color: var(--color-ui)
+        .dialog_sidebar_pages,
+        .dialog_sidebar_actions
+            display: flex
+            align-content: center
+            flex-wrap: wrap
+            flex-direction: row
+            margin-top: 0
+            margin-bottom: 0
+            border: none
+            li
+                width: auto
+                text-align: center
+                flex-grow: 0
+                border-left: none
+
+                display: flex
+                align-items: center
+
+                &.selected
+                    border-left: none
+
+        .dialog_sidebar_actions
+            justify-content: flex-end
+            gap: 4px
+            li
+                @include styles.clickable($sunken: false, $subtle: true)
+                flex-grow: 0
+                padding: 0 8px
+                gap: 8px
+                height: 23px
+                // padding-inline-start: 32px
+                & > i
+                    margin: 0
+
+        .dialog_sidebar_pages
+            position: relative
+            margin: 0
+            li
+                position: relative
+                line-height: 18px
+                padding: 0 8px
+                border-top-left-radius: 3px
+                border-top-right-radius: 3px
+                &:not(.selected)
+                    box-shadow: inset -1px 0 var(--ButtonDkShadow), inset -2px 0 grey, inset 2px 2px var(--ButtonHilight)
+                &.selected
+                    z-index: 8
+                    margin-top: -3px
+                    vertical-align: top
+                    &::before
+                        box-shadow: inset -1px 0 var(--ButtonDkShadow), inset -2px 0 grey, inset 2px 2px var(--ButtonHilight)
+                        content: ''
+                        position: absolute
+                        inset: 0
+                        background: var(--color-ui)
+                        z-index: -1
+                        border-radius: inherit
+                        margin-bottom: -3px
+                &.error::after
+                    margin-top: 0
+                    border-radius: inherit
+                    inset: 0
+                    width: auto
+                    height: auto
+                    background: none
+                    border: 1px dashed var(--color-close)
+                    z-index: 1
+    .dialog_bar.button_bar
+        margin: 0
+        padding: 5px 8px
+        min-height: 0
+    &_close_button
+        @include styles.clickable($sunken: false, $subtle: false)
+        display: block
+        max-height: 14px
+        max-width: 16px
+        top: 6px
+        right: 6px
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E")
+        background-position: top 3px left 4px
+        background-repeat: no-repeat
+        cursor: default
+        &:hover
+            background-color: var(--color-ui)
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E")
+            background-position: top 3px left 4px
+            background-repeat: no-repeat
+        i
+            display: none
+
+    &_menu_button, .dialog_sidebar_menu_button
+        @include styles.clickable($sunken: false, $subtle: false)
+        display: block
+        max-height: 14px
+        max-width: 16px
+        margin-top: 2.5px
+        margin-right: 6px
+
+        padding: 0
+
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0v16h1V1h14V0z' fill='%23DFDFDF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1v14h1V2h12V1H2z' fill='%23fff'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H0v-1h15V0h1v17z' fill='%23000'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1h-1v14H1v1h14V1z' fill='gray'/%3E%3Cpath fill='silver' d='M2 2h12v13H2z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 6H4v1h1v1h1v1h1v1h1V9h1V8h1V7h1V6z' fill='%23000'/%3E%3C/svg%3E")
+        background-position: top 3px
+        background-repeat: no-repeat
+        &:hover
+            background-color: var(--color-ui)
+        i
+            display: none
+
+    .dialog_sidebar_menu_button
+        background-image: none
+        display: flex
+        align-items: center
+        justify-content: center
+        i
+            display: block
+            color: var(--color-text)
+            min-width: 0
+            width: 16px
+            height: 16px
+            font-size: 12px
+            image-rendering: pixelated
+
+    &:has(.dialog_menu_button)
+        .dialog_handle
+            &::before
+                content: none
+
+dialog#settings,
+dialog#theme,
+dialog#keybindings
+    .dialog_wrapper
+        min-height: 0
+
+.dialog_bar
+    &.button_bar > button
+        background: var(--color-ui)
+        // This is required to overwrite Blockbench's styles
+        color: var(--color-text) !important
+    & > button.confirm_btn:not(:hover)
+        background: var(--color-ui)
+    &.form_bar
+        align-items: center
+        margin-top: 0
+        margin-bottom: 0
+        min-height: 24px
+
+dialog
+    div.dialog_form_buttons a
+        color: var(--color-accent)
+
+label.name_space_left
+    line-height: 1
+    padding-top: 0
+    &:empty
+        background: red
+
+#blackout
+    // Cover all, no exceptions
+    &.darken
+        background-color: #a5a5a5
+        mix-blend-mode: multiply
+        opacity: 1
+        backdrop-filter: blur(1px) url('data:image/svg+xml,\
+            <svg xmlns="http://www.w3.org/2000/svg">\
+                <filter id="posterize">\
+                    <feComponentTransfer>\
+                        <feFuncR type="discrete" tableValues="0 .25 .5 .75 1" />\
+                        <feFuncG type="discrete" tableValues="0 .25 .5 .75 1" />\
+                        <feFuncB type="discrete" tableValues="0 .25 .5 .75 1" />\
+                    </feComponentTransfer>\
+                </filter>\
+            </svg>#posterize') saturate(0)
+
+body.is_mobile
+    .dialog_sidebar
+        display: block !important
+
+.dialog_wrapper.has_sidebar
+    grid-template-rows: auto auto 36px
+    grid-template-columns: auto
+    grid-template-areas: "top" "content" "buttons"
+    .dialog_content
+        margin: 0 8px 0 8px
+        padding: 16px
+        background: transparent
+        box-shadow: inset -2px -2px var(--ButtonDkShadow), inset -4px -4px var(--ButtonShadow), inset 3px 3px var(--ButtonHilight)
+
+.dialog_form_description
+    @include styles.clickable($sunken: false, $subtle: true)
+    padding-top: 5px
+    font-size: 11px
+    height: 24px
+    width: 24px
+
+.dialog_message_box_command
+    @include styles.clickable($sunken: false, $subtle: false)
+    padding-inline: 8px 0
+    padding-block: 4px
+    font-size: 11px
+    margin-top: 2px
+    &:hover
+        background-color: var(--color-ui)
+        color: var(--color-text)
+
+.form_inline_select
+    gap: 1px
+    & > li
+        @include styles.clickable($sunken: false, $subtle: false)
+        height: 24px
+        background-color: var(--color-ui)
+        color: var(--color-text)
+        &.selected
+            @include styles.clickable($sunken: true, $subtle: false)
+            background-color: var(--color-ui)
+            color: var(--color-text)
+
+// settings dialog
+.settings_list
+    li
+        display: flex
+        padding: 2px 1px
+        margin: 4px 0
+        &:not(:has(input[type=checkbox], .numeric_input))
+            margin-left: 13px
+
+        &:has(div.bar_select, input[type=text])
+            justify-content: space-between
+
+        & > .setting_label
+            order: 10
+            width: auto
+
+        input[type=text]
+            margin: 8px
+
+    div.bar_select, input[type=text]
+        min-width: 45%
+        // Overriding element style (fix if can later)
+        width: auto !important
+        order: 20
+
+    .setting_element
+        text-align: center
+        float: left
+        &:has(input[type=checkbox])
+            margin-top: 12px
+            width: auto
+
+    .setting_name, .setting_description
+        font-size: 11px
+        line-height: 14px
+
+#settings_profile_wrapper
+    & > bb-select
+        min-width: 0
+        margin-inline: 6px
+        margin-bottom: 6px
+
+// keybindings dialog
+.keybind_line > div.keybindslot
+    background-color: #ffffff
+
+// themes dialog
+dialog#theme
+    max-width: 600px
+
+#theme_editor:has(#thumbnail_editor) > div
+    h2.i_b, .theme_preview
+        position: absolute
+        z-index: 1
+    .theme_preview
+        margin-top: 24px
+
+#thumbnail_editor
+    width: 60%
+    margin-left: 40%
+    max-height: 300px
+
+#css_editor
+    max-height: calc(300px - 20px)
+
+#theme_list
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr))
+    height: 400px
+    grid-gap: 6px
+    .theme_preview
+        outline: 2px solid var(--color-accent)
+        box-shadow: 0 0 0 2px var(--color-ui)
+        outline-offset: 2px
+        height: 96px
+        transform: scale(0.8)
+        &_center
+            width: 30px
+            height: 30px
+            margin-top: 50px
+    & > .theme
+        @include styles.border($sunken: false, $subtle: false)
+        border: none
+        display: flex
+        flex-direction: column
+        gap: 0
+        padding: 6px
+
+        &.selected
+            @include styles.border($sunken: true, $subtle: false)
+            background: var(--color-ui)
+            border: none
+        &:hover
+            border: none
+
+.theme_name
+    font-size: 11px
+    margin-top: 0px
+    height: 16px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+.theme_author:not(:empty)
+    font-size: 11px
+    margin-top: 4px
+    border-top: 1px solid var(--color-border)
+
+.theme_author:empty
+    font-size: 11px
+    margin-top: 4px
+    border-top: 1px solid var(--color-border)
+
+div#color_wrapper
+    columns: unset
+    display: grid
+    grid-template-columns: repeat(auto-fit, 64px)
+    gap: 4px
+    overflow: shown
+
+.layout_color_preview
+    height: 24px
+    width: 48px
+    position: relative
+    @include styles.border($sunken: true, $subtle: true)
+    outline: 1px solid var(--color-border)
+
+.color_field
+    min-height: 0
+    width: auto
+    height: auto
+    margin: 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    .desc
+        display: inline
+        width: auto
+    .desc > h4
+        font-size: 11px
+        width: 100%
+        height: 24px
+        text-align: center
+        line-height: 0.95
+        padding-top: 4px
+    .desc > p
+        display: none
+
+// plugins dialog
+#plugin_list
+    & > li
+        @include styles.border($sunken: false, $subtle: false)
+        margin: 2px
+        padding: 6px 12px
+        cursor: default
+        .description
+            font-size: 11px
+        ul.plugin_tag_list
+            margin-top: 2px
+            li
+                height: auto
+                font-size: 11px
+                padding: 2px 6px
+                border-radius: 0
+                outline: 1px solid var(--color-border)
+        &.selected
+            @include styles.border($sunken: true, $subtle: false)
+            background-color: var(--color-ui)
+
+// about dialog
+
+dialog#about
+    min-width: 460px
+    min-height: 420px
+    max-width: 460px
+    max-height: 420px
+    h4
+        font-size: 11px
+        margin-block: 0
+        border-top: none
+        padding-top: 12px
+        text-align: left
+        &:nth-child(6)
+            text-transform: capitalize
+
+            &::after
+                content: ":"
+    ul.multi_column_list
+        column-count: 3
+        &:nth-child(7)
+            column-count: 2
+        & > li
+            text-align: left
+            line-height: 16.5px
+            margin-bottom: 0
+
+    & content
+        padding-inline: 40px 30px
+        padding-bottom: 6px
+        & > div
+            position: relative
+            display: flex
+            flex-direction: column
+            overflow-y: scroll
+            margin-top: 92px
+            height: 264px
+            & > p:nth-child(2)::before
+                content: "Blockbench\A"
+                white-space: pre
+
+            & > p:nth-child(5)
+                margin-top: 12px
+
+            & > *
+                order: 40
+        p
+            text-align: left
+
+    #about_page_title
+        order: 1
+        width: 346px
+        position: fixed
+        margin-top: -92px
+        padding-bottom: 12px
+        border-bottom: 1px solid var(--color-border)
+        & > img
+            filter: brightness(0) saturate(100%) invert(10%) sepia(100%) saturate(9000%) hue-rotate(248deg)
+
+    div.socials
+        background-color: transparent
+        gap: 6px
+        order: 5
+        flex-wrap: wrap
+        flex-direction: column
+        justify-content: center
+        padding-block: 4px 12px
+        margin-top: -32px
+
+        position: fixed
+        margin-left: -48px
+        a
+            @include styles.clickable($sunken: false, $subtle: true)
+            padding: 6px
+            & > label
+                display: none
+            & i, &:hover i
+                font-size: 16px
+                display: inline-block
+                color: var(--color-accent) !important
+
+            & > p
+                flex: 1
+            &:hover
+                background-color: transparent
+
+// brush presets dialog
+ul#brush_preset_bar > li
+    @include styles.focusable($sunken: false, $subtle: true)
+    width: 24px
+    height: 24px
+    padding: 0
+    &.selected
+        @include styles.focusable($sunken: true, $subtle: true)
+        border-bottom: none
+    & > i
+        display: block
+        margin: auto
+        transform: scale(0.8)
+        &.fa_big
+            margin: 2px auto
+
+// bar item list
+#bar_item_list
+    @include styles.border($sunken: true, $subtle: false)
+    padding: 1px
+    background-color: var(--color-back)
+    li
+        padding: 2px 4px
+        height: 20px
+        &:hover
+            background: var(--color-accent)
+            color: var(--color-accent_text)
+
+// PER DIALOG APPLICATION ICONS
+
+dialog
+    &#brush_options .dialog_handle::before
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAS1BMVEUAAACGhob4+PhmZmYAAADMzMyysrLAwMD/AACAAACAgAD//wAAAIAAAP/MAGZNTU13d3c5OTlCQkKZmZmgoKTq6urX19fj4+P///+tmNjPAAAAAXRSTlMAQObYZgAAAAFiS0dEGJtphR4AAAAHdElNRQfiBhoALTbILJ0EAAAAf0lEQVQY01XO6xqCIAwG4J3JolQIvf87bUwy+x7+7GWDAQD+AhEkYlHyDHEwPIBcWLBfOTCJBxgl0W1SQhFVFZ8wSQ73h78TAPkpr6nXPhaAOX/rDjPiEmcdUOLDZFgGQDGrb15WPaG1zao3nLBT2ypeO2hXu3YE1L7msSnIXz48EgVQEyjFRAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNi0yNlQwMDo0NTo1NC0wNDowMGovbQQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDYtMjZUMDA6NDU6NTQtMDQ6MDAbctW4AAAAAElFTkSuQmCC')
+    &#screenshot .dialog_handle::before
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAflBMVEUAAACZmf8AAAAzZmZmZpmZzP/M///A3MAzMwDn59YzM2bM7P+ZmcyZmWZVVVWtqZDAwMCGhoZmZsxmZjNmMzMpKSkWFhYAmcxmmZmmyvBmAMwz//8AM2YAmf9m//9mzP//+/DMMwDMmTOZMwBCQkKZZgBmmcxmzMyZ//////9jje5BAAAAAXRSTlMAQObYZgAAAAFiS0dEKcq3hSQAAAAHdElNRQfiBBMBIhJ1vRPHAAABR0lEQVQ4y72T0VrCMAyF6VlWa1dWN1DYkE5Fwfd/QtOmgyKfXnJyteXsT5p0i8XdpFj4O11RrfVDjWqWMVfu6tE2jlWDljmohSnySzK3ujgqT3BPv8J35ypkreT9dXRGENSoFpZwI36X8lq1qucnQy6L7OxJBuXJRoddOZsU87ZbrdfPL9FBXrVkNz2YgK3WA7gadRj7PqIyoe0VmIDtbjdA8rEJdlAmkBBEtITBq9pHBzKBNpEgAjUY92FKDpSElQRowKjewpQNQtgWAyCfDGGCHQoCzQJDRhVCYEJT9DBPOBumMPFHuiB4F0/hkoOnMHGeT0GXHpwH3j+QGDBtnMMQt1EQgMMBUgXjJ68mbavo4SuWkD6oWJZXlAk5dz6MrNuSioR+PsXlYmTDQnZczOl40t+n4zFuVa5cvj9nychg8c9/cl/9AMn2GOt+eJTdAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA0LTE5VDAxOjM0OjE4LTA0OjAwm26U/QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wNC0xOVQwMTozNDoxOC0wNDowMOozLEEAAAAASUVORK5CYII=')

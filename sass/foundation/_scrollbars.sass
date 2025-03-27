@@ -1,0 +1,99 @@
+@use "./_styles"
+
+// CSS from os-gui.js.org
+*
+    scrollbar-width: auto
+    scrollbar-color: auto
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-button
+    width: var(--scrollbar-size)
+    height: var(--scrollbar-size)
+
+::-webkit-scrollbar
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2P8/////4MHDzIwHjhw4L+9vT0DAHAFCj6esq3FAAAAAElFTkSuQmCC") repeat
+    image-rendering: pixelated
+
+::-webkit-scrollbar-thumb
+    background-color: var(--color-ui)
+    border-top: 1px solid var(--color-ui)
+    border-left: 1px solid var(--color-ui)
+    border-right: 1px solid var(--WindowFrame)
+    border-bottom: 1px solid var(--WindowFrame)
+    box-shadow: 1px 1px 0 var(--ButtonHilight) inset, -1px -1px 0 var(--ButtonShadow) inset
+    // Blockbench deviation: revert setup.css changes
+    border-radius: 0
+    &:hover
+        background-color: var(--color-ui)
+
+::-webkit-scrollbar-corner
+    background-color: var(--color-ui)
+
+::-webkit-scrollbar-button
+    background-color: var(--color-ui)
+    border-top: 1px solid var(--color-ui)
+    border-left: 1px solid var(--color-ui)
+    border-right: 1px solid var(--WindowFrame)
+    border-bottom: 1px solid var(--WindowFrame)
+    box-shadow: 1px 1px 0 var(--ButtonHilight) inset, -1px -1px 0 var(--ButtonShadow) inset
+    background-image: var(--scrollbar-arrows-ButtonText)
+    image-rendering: pixelated
+    width: var(--scrollbar-size)
+    height: var(--scrollbar-size)
+    box-sizing: border-box
+
+::-webkit-scrollbar-button:hover:active
+    border: 1px solid var(--ButtonShadow)
+    box-shadow: none
+
+::-webkit-scrollbar-button:disabled
+    background-image: var(--scrollbar-arrows-GrayText), var(--scrollbar-arrows-ButtonHilight)
+
+::-webkit-scrollbar-button:horizontal:decrement:disabled
+    // left
+    background-position: calc(var(--scrollbar-button-inner-size) * -3 + 1px) 1px, calc(var(--scrollbar-button-inner-size) * -3 + 2px) 2px
+
+::-webkit-scrollbar-button:horizontal:increment:disabled
+    // right
+    background-position: calc(var(--scrollbar-button-inner-size) * -2 + 1px) 1px, calc(var(--scrollbar-button-inner-size) * -2 + 2px) 2px
+
+::-webkit-scrollbar-button:vertical:decrement:disabled
+    // up
+    background-position: calc(var(--scrollbar-button-inner-size) * -1 + 1px) 1px, calc(var(--scrollbar-button-inner-size) * -1 + 2px) 2px
+
+::-webkit-scrollbar-button:vertical:increment:disabled
+    // down
+    background-position: calc(var(--scrollbar-button-inner-size) * -0 + 1px) 1px, calc(var(--scrollbar-button-inner-size) * -0 + 2px) 2px
+
+::-webkit-scrollbar-button:horizontal:decrement
+    // left
+    background-position: calc(var(--scrollbar-button-inner-size) * -3 + 1px) 1px
+
+::-webkit-scrollbar-button:horizontal:increment
+    // right
+    background-position: calc(var(--scrollbar-button-inner-size) * -2 + 1px) 1px
+
+::-webkit-scrollbar-button:vertical:decrement
+    // up
+    background-position: calc(var(--scrollbar-button-inner-size) * -1 + 1px) 1px
+
+::-webkit-scrollbar-button:vertical:increment
+    // down
+    background-position: calc(var(--scrollbar-button-inner-size) * -0 + 1px) 1px
+
+// Blockbench deviation: undo setup.css changes
+::-webkit-scrollbar-track
+    background: inital
+
+::-webkit-scrollbar-track-piece
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAG0lEQVQYV2P8/////4MHDzIwHjhw4L+9vT0DAHAFCj6esq3FAAAAAElFTkSuQmCC") repeat
+    image-rendering: pixelated
+
+::-webkit-scrollbar-track-piece:increment
+    background-position: bottom
+
+/* turn off double buttons */
+::-webkit-scrollbar-button:start:increment,
+::-webkit-scrollbar-button:end:decrement
+    display: none

@@ -1,0 +1,66 @@
+$border-raised-outer: inset -2px -2px var(--WindowFrame), inset 1px 1px var(--ButtonHilight)
+$border-raised-inner: inset -2px -2px var(--ButtonShadow), inset 2px 2px var(--ButtonFace)
+$border-sunken-outer: inset -2px -2px var(--ButtonHilight), inset 1px 1px var(--WindowFrame)
+$border-sunken-inner: inset -2px -2px var(--ButtonFace), inset 2px 2px var(--ButtonShadow)
+
+$border-subtle-raised-outer: inset -2px -2px var(--ButtonShadow), inset 1px 1px var(--ButtonHilight)
+$border-subtle-raised-inner: inset -2px -2px var(--ButtonShadow), inset 2px 2px var(--ButtonFace)
+$border-subtle-sunken-outer: inset -2px -2px var(--ButtonHilight), inset 1px 1px var(--ButtonShadow)
+$border-subtle-sunken-inner: inset -2px -2px var(--ButtonFace), inset 2px 2px var(--ButtonShadow)
+
+@mixin clickable($sunken: false, $subtle: false)
+    background-color: var(--color-ui)
+    @if $subtle
+        @if $sunken
+            box-shadow: $border-subtle-sunken-outer, $border-subtle-sunken-inner
+        @else
+            box-shadow: $border-subtle-raised-outer, $border-subtle-raised-inner
+            &:active
+                color: black
+                background-color: var(--color-ui)
+                box-shadow: $border-subtle-sunken-outer, $border-subtle-sunken-inner
+    @else
+        @if $sunken
+            box-shadow: $border-sunken-outer, $border-sunken-inner
+        @else
+            box-shadow: $border-raised-outer, $border-raised-inner
+            &:active
+                color: black
+                background-color: var(--color-ui)
+                box-shadow: $border-sunken-outer, $border-sunken-inner
+
+    &:focus
+        outline: 1px dotted #000000
+        outline-offset: -4px
+
+@mixin focusable($sunken: false, $subtle: false)
+    @if $subtle
+        @if $sunken
+            box-shadow: $border-subtle-sunken-outer, $border-subtle-sunken-inner
+        @else
+            box-shadow: $border-subtle-raised-outer, $border-subtle-raised-inner
+    @else
+        @if $sunken
+            box-shadow: $border-sunken-outer, $border-sunken-inner
+        @else
+            box-shadow: $border-raised-outer, $border-raised-inner
+
+    &:focus
+        outline: 1px dotted #000000
+        outline-offset: -4px
+
+@mixin focused()
+    outline: 1px dotted #000000
+    outline-offset: -4px
+
+@mixin border($sunken: false, $subtle: false)
+    @if $subtle
+        @if $sunken
+            box-shadow: $border-subtle-sunken-outer, $border-subtle-sunken-inner
+        @else
+            box-shadow: $border-subtle-raised-outer, $border-subtle-raised-inner
+    @else
+        @if $sunken
+            box-shadow: $border-sunken-outer, $border-sunken-inner
+        @else
+            box-shadow: $border-raised-outer, $border-raised-inner

@@ -1,0 +1,1500 @@
+/**
+ * 98.css
+ * Copyright (c) 2020 Jordan Scales <thatjdanisso.cool>
+ * https://github.com/jdan/98.css/blob/main/LICENSE
+ */
+/*CSS Framework information*/
+:root {
+  /* Color */
+  --surface: #c0c0c0;
+  --button-highlight: #ffffff;
+  --button-face: #dfdfdf;
+  --button-shadow: #808080;
+  --window-frame: #0a0a0a;
+  --dialog-blue: #000080;
+  --dialog-blue-light: #1084d0;
+  --dialog-gray: #808080;
+  --dialog-gray-light: #b5b5b5;
+  --link-blue: #0000ff;
+
+  /* Spacing */
+  --element-spacing: 8px;
+  --grouped-button-spacing: 4px;
+  --grouped-element-spacing: 6px;
+  --radio-width: 12px;
+  --checkbox-width: 13px;
+  --radio-label-spacing: 6px;
+  --range-track-height: 4px;
+  --range-spacing: 10px;
+
+  /* Some detailed computations for radio buttons and checkboxes */
+  --radio-total-width-precalc: var(--radio-width) + var(--radio-label-spacing);
+  --radio-total-width: calc(var(--radio-total-width-precalc));
+  --radio-left: calc(-1 * var(--radio-total-width-precalc));
+  --radio-dot-width: 4px;
+  --radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);
+  --radio-dot-left: calc(
+    -1 * (var(--radio-total-width-precalc)) + var(--radio-width) / 2 - var(
+        --radio-dot-width
+      ) / 2
+  );
+
+  --checkbox-total-width-precalc: var(--checkbox-width) +
+    var(--radio-label-spacing);
+  --checkbox-total-width: calc(var(--checkbox-total-width-precalc));
+  --checkbox-left: calc(-1 * var(--checkbox-total-width-precalc));
+  --checkmark-width: 7px;
+  --checkmark-top: 3px;
+  --checkmark-left: 3px;
+
+  /* Borders */
+  --border-width: 1px;
+  --border-raised-outer: inset -2px -2px var(--window-frame),
+    inset 1px 1px var(--button-highlight);
+  --border-raised-inner: inset -2px -2px var(--button-shadow),
+    inset 2px 2px var(--button-face);
+  --border-sunken-outer: inset -2px -2px var(--button-highlight),
+    inset 1px 1px var(--window-frame);
+  --border-sunken-inner: inset -2px -2px var(--button-face),
+    inset 2px 2px var(--button-shadow);
+
+  /* Window borders flip button-face and button-highlight */
+  --border-window-outer: inset -1px -1px var(--window-frame),
+    inset 1px 1px var(--button-face);
+  --border-window-inner: inset -3px -2px var(--button-shadow),
+    inset 2px 2px var(--button-highlight);
+
+  /* Field borders (checkbox, input, etc) flip window-frame and button-shadow */
+  --border-field: inset -1px -1px var(--button-highlight),
+    inset 1px 1px var(--button-shadow), inset -2px -2px var(--button-face),
+    inset 2px 2px var(--window-frame);
+
+  --border-tab: inset -1px 0 var(--window-frame),
+    inset 1px 1px var(--button-face), inset -2px 0 var(--button-shadow),
+    inset 2px 2px var(--button-highlight);
+}
+
+/*Start Screen*/
+
+#start_screen {
+  box-shadow: 0px -1px;
+  z-index: 1;
+}
+#start_screen > content {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 1;
+}
+#start_files > div.start_screen_left {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 1;
+  padding: 0px 3px 2px 3px;
+  margin: 0px;
+  color: #222222;
+}
+#start_files li.format_category {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  padding-top: 5px;
+  margin: 0px;
+  margin-bottom: 2px;
+}
+#start_files li.format_category > label {
+  margin: 5px;
+}
+#start_files div.start_screen_left h2 {
+  display: none;
+}
+#start_files li.format_entry,
+#start_files li.format_entry:hover {
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  flex-grow: 1;
+  color: #222222;
+  margin: 2px;
+}
+#start_files li.format_entry.selected {
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  flex-grow: 1;
+  color: #222222;
+  margin: 2px;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+#start_files li.format_entry:active {
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  flex-grow: 1;
+  color: #222222;
+  margin: 2px;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+#start_screen .recent_project.thumbnail,
+#start_screen .recent_project.thumbnail:hover {
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  flex-grow: 1;
+  color: #222222;
+}
+div.start_screen_right > ul.recent_list_grid li {
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  flex-grow: 1;
+  color: #222222;
+}
+#start_screen .recent_project.thumbnail .icon_wrapper {
+  margin-left: 5px;
+  margin-top: 6px;
+  background: var(--surface);
+}
+#start_screen .recent_project.thumbnail .recent_favorite_button {
+  margin-right: 5px;
+  margin-top: 6px;
+}
+div.start_screen_right > ul.recent_list_grid li.selected {
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  flex-grow: 1;
+  color: #222222;
+}
+div.start_screen_right > ul.recent_list_grid li:active {
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  flex-grow: 1;
+  color: #222222;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+#splash_screen {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 1;
+  padding: 3px 3px;
+  margin: 0px;
+  color: white;
+}
+#splash_screen > div > p {
+  margin-right: 3px;
+}
+
+#splash_screen > i {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  transform: scale(90%);
+}
+#splash_screen > i:hover {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  transform: scale(90%);
+}
+#splash_screen > i:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  transform: scale(90%);
+}
+
+#start_screen_view_menu .search_bar {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+
+#start_screen_view_menu li {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+#start_screen_view_menu li:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+#start_screen_view_menu li.selected {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  border-bottom: 0px solid;
+}
+#start_screen_view_menu li.selected:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  border-bottom: 0px solid;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+#start_files > div.start_screen_right > div.button_bar > button {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+#start_files > div.start_screen_right > div.button_bar > button:hover {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+#start_files > div.start_screen_right > div.button_bar > button:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+/*theme selector*/
+#theme_list > div.theme.selected {
+  background: silver;
+  box-shadow: inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf,
+    inset -2px -2px grey, inset 2px 2px #fff;
+  padding: 3px;
+}
+
+/*dialog menu*/
+#theme_editor > div:nth-child(2) > h2 {
+  font-size: 20px;
+}
+div.dialog_close_button {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+  transform: scale(70%);
+}
+div.dialog_close_button:hover {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+}
+div.dialog_close_button:active {
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+div.dialog_handle.ui-draggable-handle > div.dialog_menu_button {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-inner);
+  max-width: 30px;
+  min-height: 30px;
+  transform: scale(70%) translate(-4px, -3px);
+}
+div.dialog_handle.ui-draggable-handle > div.dialog_menu_button:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  max-width: 30px;
+  min-height: 30px;
+  transform: scale(70%) translate(-4px, -3px);
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+div.dialog_wrapper.has_sidebar {
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+div.dialog_wrapper.has_sidebar > div.dialog_bar.button_bar > button {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-raised-inner);
+  max-width: 30px;
+}
+div.dialog_wrapper.has_sidebar > div.dialog_bar.button_bar > button:active {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  max-width: 30px;
+  min-height: 30px;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+div.dialog_wrapper.has_sidebar > div.dialog_bar.button_bar > button:focus {
+  color: black;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  max-width: 30px;
+  min-height: 30px;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+
+div.dialog_handle {
+  background: silver;
+  box-shadow: inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf,
+    inset -2px -2px grey, inset 2px 2px #fff;
+  padding: 3px;
+}
+div.dialog_handle.ui-draggable-handle {
+  background: linear-gradient(
+    90deg,
+    var(--dialog-blue),
+    var(--dialog-blue-light)
+  );
+  padding: 3px 2px 3px 3px;
+  justify-content: space-between;
+  align-items: right;
+}
+div.dialog_wrapper {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 1;
+  padding: 2px 3px;
+  margin: 0;
+}
+div.dialog_wrapper.has_sidebar > div.dialog_sidebar > ul.dialog_sidebar_pages {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 1;
+  padding: 2px 3px;
+  margin: 0;
+  color: #222222;
+}
+div.dialog_wrapper.has_sidebar
+  > div.dialog_sidebar
+  > ul.dialog_sidebar_actions {
+  background: var(--surface);
+  box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  flex-grow: 0;
+  padding: 2px 3px;
+  margin: 0;
+  color: #222222;
+}
+
+input.dark_bordered {
+  color: var(--dialog-gray);
+  background: white;
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+}
+
+input[type="checkbox"] {
+  background: white;
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  transform: scale(80%);
+}
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+  display: block;
+  height: 35px;
+  width: 35px;
+  font-family: "MS Sans Serif";
+}
+input[type="checkbox"]::before {
+  content: "";
+  display: block;
+  height: 35px;
+  width: 35px;
+  font-family: "MS Sans Serif";
+}
+
+/*windows top bar buttons*/
+#windows_window_menu > li {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+  transform: scale(70%);
+  margin: 1px 0px 0px -9px;
+}
+#windows_window_menu > li:hover {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+}
+#windows_window_menu > li:active {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+#windows_window_menu > li.wwm_r {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+  margin-left: -5px;
+}
+#windows_window_menu > li.wwm_r:hover {
+  color: black;
+  box-sizing: border-box;
+  border: none;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  border-radius: 0;
+  max-width: 30px;
+  max-height: 30px;
+  margin-left: -5px;
+}
+#windows_window_menu > li.wwm_r:active {
+  box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  outline: 1px dotted #000000;
+  outline-offset: -4px;
+}
+button {
+  color: #222222;
+  background: var(--surface);
+  box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+}
+.dialog_bar > button.confirm_btn:not(:hover) {
+  background: var(--surface);
+}
+
+/*scrollbars*/
+@supports (overflow: overlay) {
+  ::-webkit-scrollbar {
+    width: 16px;
+  }
+  ::-webkit-scrollbar-corner {
+    background: var(--button-face);
+  }
+  ::-webkit-scrollbar-track {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/scrollbar-background.svg");
+    transform: scale(200%);
+  }
+  ::-webkit-scrollbar:horizontal {
+    height: 16px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-radius: 0px;
+  }
+
+  .scroll_horizontal {
+    overflow: hidden;
+  }
+  ::-webkit-scrollbar-button:single-button {
+    display: block;
+    border-style: solid;
+    height: 16px;
+    width: 16px;
+  }
+  /* Up */
+  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-up.svg");
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-width: 0;
+  }
+
+  /* Down */
+  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-down.svg");
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-width: 0;
+  }
+
+  /* Left */
+  ::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-left.svg");
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-width: 0;
+  }
+
+  /* Right */
+  ::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-right.svg");
+    background-color: var(--button-face);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-width: 0;
+  }
+  /*Explorer Addon*/
+  #tab_bar > div.tool.sidebar_explorer_open_button {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #tab_bar > div.tool.sidebar_explorer_open_button:hover {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #tab_bar > div.tool.sidebar_explorer_open_button:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .bar.flex .tool {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .bar.flex .tool:hover {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .bar.flex .tool:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .sidebar_explorer_location > span {
+    color: black;
+    padding: 0px 10px 22px 10px;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .sidebar_explorer_location > span:hover {
+    color: black;
+    padding: 0px 10px 22px 10px;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .sidebar_explorer_location > span:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .sidebar_explorer_location > span {
+    padding: 0px 10px 22px 10px;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .sidebar_explorer_location > span:hover {
+    padding: 0px 10px 22px 10px;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .sidebar_explorer_location > span:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  li.sidebar_explorer_file {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  li.sidebar_explorer_file:hover {
+    color: black;
+    background-color: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  li.sidebar_explorer_file:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  li.sidebar_explorer_file.selected {
+    color: black;
+    background-color: var(--dialog-gray);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  li.sidebar_explorer_file.selected:hover {
+    color: black;
+    background-color: var(--dialog-gray);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  li.sidebar_explorer_file span,
+  li.sidebar_explorer_file span:hover {
+    color: black;
+  }
+  /*Tabs and bars*/
+  #new_tab_button,
+  #new_tab_button:hover {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    transform: scale(80%);
+  }
+  #new_tab_button:active {
+    color: #222222;
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+    transform: scale(80%);
+  }
+  #tab_bar .project_tab_close_button,
+  #tab_bar .project_tab_close_button:hover {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    padding: 3px;
+  }
+  #tab_bar .project_tab_close_button:active {
+    color: #222222;
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+    padding: 3px;
+  }
+
+  div#work_screen {
+    box-shadow: 0px -1px;
+    z-index: 1;
+  }
+  #right_bar {
+    box-shadow: 0px -1px;
+  }
+  #cubes_list > li .outliner_object,
+  #cubes_list > li .outliner_object:hover {
+    color: black;
+  }
+  #cubes_list {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #cubes_list > li.outliner_node.parent_li > ul > li,
+  #cubes_list > li.outliner_node.parent_li > ul > li:hover {
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    margin-left: 5px;
+    margin-right: 2px;
+  }
+  #cubes_list > li.outliner_node.parent_li > ul > li > .cube.selected {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #sidebar_explorer ul.list.selected {
+    background-color: var(--dialog-gray-light);
+  }
+  #tab_bar_list > div.project_tab.selected > div {
+    background-color: var(--dialog-gray-light);
+  }
+  #mode_selector li,
+  #mode_selector li:hover {
+    color: black;
+    background-color: var(--dialog-gray-light);
+    border-radius: 5px 5px 0px 0px;
+    border-top: 0px;
+    border-bottom: 0px solid;
+    box-shadow: var(--border-tab);
+    padding: 0px 10px 0px 10px;
+    margin: 0px;
+  }
+  #mode_selector li.selected {
+    border-bottom: 0px solid;
+    background-color: var(--surface);
+    border-radius: 5px 5px 0px 0px;
+    border-top: 0px;
+    box-shadow: var(--border-tab);
+    transform: translatey(0px);
+    z-index: 10;
+    color: black;
+  }
+  #tab_bar {
+    background-color: var(--surface);
+  }
+  #tab_bar_list > div.project_tab {
+    background-color: var(--dialog-gray-light);
+    border-radius: 5px 5px 0px 0px;
+    border-top: 0px;
+    box-shadow: var(--border-tab);
+    z-index: 1;
+  }
+  #tab_bar_list > div.project_tab.selected {
+    background-color: var(--surface);
+    border-radius: 5px 5px 0px 0px;
+    border-top: 0px;
+    box-shadow: var(--border-tab);
+    transform: translatey(0px);
+    z-index: 10;
+  }
+
+  /*logo and topbar*/
+  header {
+    background: silver;
+    box-shadow: inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf,
+      inset -2px -2px grey, inset 2px 2px #fff;
+    background: linear-gradient(
+      90deg,
+      var(--dialog-blue),
+      var(--dialog-blue-light)
+    );
+    justify-content: space-between;
+    align-items: right;
+    min-height: 26px;
+    max-height: 30px;
+  }
+
+  #corner_logo > img {
+    filter: brightness(0.1);
+    transform: scale(85%) translate(0px, -1px);
+    image-rendering: pixelated;
+  }
+
+  div#corner_logo {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-radius: 0px;
+    transform: scale(103%) translate(-3px, 1px);
+  }
+
+  li.menu_bar_point {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    padding: 0 12px;
+  }
+  li.menu_bar_point:hover {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    padding: 0 12px;
+  }
+  li.menu_bar_point:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    padding: 0 12px;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #menu_bar > li.menu_bar_point.opened {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    padding: 0 12px;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .dialog {
+    color: #222222;
+  }
+  .dialog_handle {
+    color: white;
+  }
+  .dialog_sidebar .dialog_sidebar_pages li {
+    border-left: 0;
+  }
+  .dialog_sidebar .dialog_sidebar_pages li.selected {
+    border-left: 0;
+  }
+  #project > div.dialog_wrapper > div > button {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #project > div.dialog_wrapper > div > button:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  .dialog_sidebar .dialog_sidebar_pages {
+    margin: 0px;
+  }
+  div.dialog_wrapper.has_sidebar > div.dialog_sidebar {
+    box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_pages
+    > li {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_pages
+    > li:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_pages
+    > li.selected {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_actions {
+    padding: 0px;
+    box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_actions
+    > li {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  div.dialog_wrapper.has_sidebar
+    > div.dialog_sidebar
+    > ul.dialog_sidebar_actions
+    > li:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #bar_item_list li,
+  #bar_item_list li:hover {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #bar_item_list li:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /*Toast Notification*/
+  .toast_notification {
+    background: silver;
+    box-shadow: inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf,
+      inset -2px -2px grey, inset 2px 2px #fff;
+    background: linear-gradient(
+      90deg,
+      var(--dialog-blue),
+      var(--dialog-blue-light)
+    );
+    justify-content: space-between;
+    color: white;
+  }
+
+  /*Toolbar*/
+  div.toolbar_wrapper.narrow.tools > div > div.content > div.tool {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  div.toolbar_wrapper.narrow.tools > div > div.content > div.tool:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  div.toolbar_wrapper.narrow.tools > div > div.content > div.tool.enabled {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+  .toolbar.narrow,
+  .toolbar_wrapper.narrow > .toolbar > .content .tool {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  .toolbar.narrow,
+  .toolbar_wrapper.narrow > .toolbar > .content .tool.enabled,
+  .toolbar.narrow,
+  .toolbar_wrapper.narrow > .toolbar > .content .tool:active {
+    color: #222222;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /*Dropdown*/
+  #main_toolbar
+    > div.toolbar_wrapper.narrow.tool_options
+    > div
+    > div.content
+    > div.tool.widget.bar_select
+    > bb-select {
+    width: 90px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-down.svg");
+    background-position: top 3px right 1px;
+    background-size: 28%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+  }
+  #main_toolbar
+    > div.toolbar_wrapper.narrow.tool_options
+    > div
+    > div.content
+    > div.tool.widget.bar_select
+    > bb-select:active {
+    width: 90px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/4a2282dd9170cabf730fb5803d1153d86b2e94e3/icon/button-down-active.svg");
+    background-position: top 3px right 1px;
+    background-size: 28%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #main_toolbar
+    > div.toolbar_wrapper.narrow.tool_options
+    > div
+    > div.content
+    > div.tool.widget.bar_select
+    > bb-select {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #settings_profile_select {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-down.svg");
+    background-position: top 3px right 1px;
+    background-size: 18%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #settings_profile_select:active {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/4a2282dd9170cabf730fb5803d1153d86b2e94e3/icon/button-down-active.svg");
+    background-position: top 3px right 1px;
+    background-size: 18%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  bb-select#uv_mode.half {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-down.svg");
+    background-position: top 3px right 1px;
+    background-size: 8%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+  }
+  bb-select#uv_mode.half:active {
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/4a2282dd9170cabf730fb5803d1153d86b2e94e3/icon/button-down-active.svg");
+    background-position: top 3px right 1px;
+    background-size: 8%;
+    background-repeat: no-repeat;
+    color: black;
+    border-radius: 0;
+    padding-right: 34px;
+    position: relative;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #uv_mode {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #text-type-input > bb-select {
+    color: #222222;
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/d39788c7886173b48399268d25c83874b1681a05/icon/button-down.svg");
+    background-position: top 2px right 1px;
+    background-size: 5%;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    padding-right: 32px;
+    position: relative;
+  }
+  #text-type-input > bb-select:active {
+    color: #222222;
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    background-image: url("https://raw.githubusercontent.com/jdan/98.css/4a2282dd9170cabf730fb5803d1153d86b2e94e3/icon/button-down-active.svg");
+    background-position: top 2px right 1px;
+    background-size: 5%;
+    background-repeat: no-repeat;
+    padding-right: 34px;
+    position: relative;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /*Sidebars+Panels*/
+  .panel.floating.dragging {
+    outline: 1px dotted #000000;
+  }
+  h3.panel_handle > .tool.panel_control {
+    opacity: 100;
+  }
+  .panel.floating {
+    border: 0px;
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  .panel.floating#panel_uv > h3 {
+    box-shadow: inset -1px -1px #0a0a0a, inset 2px 2px #dfdfdf,
+      inset -2px -2px grey, inset 2px 2px #fff;
+    background: linear-gradient(
+      90deg,
+      var(--dialog-blue),
+      var(--dialog-blue-light)
+    );
+  }
+  .bar.uv_painter_info {
+    padding-bottom: 2px;
+  }
+  #UVEditor > div.bar.uv_painter_info > span.uv_panel_texture_name {
+    border: 0px;
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #toggle_uv_overlay_anchor {
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border: 0px;
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #toggle_uv_overlay_anchor {
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border: 0px;
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #toggle_uv_overlay_anchor > div.tool {
+    transform: scale(80%) translate(0px, -2px);
+    width: 26px;
+  }
+  .bar > * {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_uv > h3 > div.tool {
+    padding: 0px 7px 0px 5px;
+    transform: scale(100%);
+    height: fit-content;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #panel_uv > h3 > div.tool:active {
+    padding: 0px 7px 0px 5px;
+    transform: scale(100%);
+    height: fit-content;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_uv > h3 > div.tool.panel_control.panel_folding_button {
+    margin-right: 5px;
+  }
+  #uv_title_bar {
+    margin-right: 125px;
+  }
+  #panel_display {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_animations {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_keyframe {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_variable_placeholders {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #panel_minecraft_title_render_panel {
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #texture_list {
+    overflow: auto;
+    background-color: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #texture_list > li {
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #texture_list > li:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #texture_list > li > div.texture_icon_wrapper {
+    transform: scale(70%);
+    box-shadow: inset -1px -1px #dfdfdf, inset 1px 1px #808080;
+  }
+  #texture_list > li > i {
+    transform: translate(0px, -5px);
+    padding: 5px;
+    height: fit-content;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #texture_list > li > i:active {
+    transform: translate(0px, -5px);
+    padding: 5px;
+    height: fit-content;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #palette_list {
+    overflow: auto;
+  }
+  #cubes_list {
+    overflow: auto;
+  }
+  #cubes_list > li {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #cubes_list > li:active {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #cubes_list > li:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #cubes_list > li:has(.outliner_object.selected) {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  .outliner_object.selected {
+    background: var(--surface);
+  }
+  #cubes_list > li > div > i.outliner_toggle {
+    transform: translate(0px, 0px);
+    padding: 10px;
+    height: fit-content;
+    padding-right: 27px;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  #cubes_list > li > div > i.outliner_toggle:active {
+    transform: translate(0px, 0px);
+    padding: 10px;
+    height: fit-content;
+    padding-right: 27px;
+    max-width: fit-content;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /*Viewport*/
+  #preview {
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+  }
+  #preview > div.single_canvas_wrapper > div > div.preview_menu {
+    transform: translate(-5px, 1px);
+  }
+  #preview > div.single_canvas_wrapper > div > div.preview_menu > div.tool {
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  #preview
+    > div.single_canvas_wrapper
+    > div
+    > div.preview_menu
+    > div.tool:active {
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  /* Blockbench text - top */
+
+  #header_free_bar {
+    text-indent: -9999px;
+  }
+
+  /*About*/
+
+  dialog#about div.socials a {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  dialog#about div.socials a:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+  }
+  dialog#about div.socials a:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  dialog#about div.socials a.selected {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+
+  div.tabs_small:not(.icon_bar) label,
+  div.tabs_small:not(.icon_bar) label:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  div.tabs_small:not(.icon_bar) label:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .tabs_small input[type="radio"]:checked + label,
+  .tabs_small input[type="radio"]:checked + label:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+  .tabs_small input[type="radio"]:checked + label:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .tabs_small .tool,
+  .tabs_small .tool:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  .tabs_small .tool:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .toolbar > .content .tool,
+  .toolbar > .content .tool:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  .toolbar > .content .tool:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #status_bar .sidebar_toggle_button,
+  #status_bar .sidebar_toggle_button:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  #status_bar .sidebar_toggle_button:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #uv_cube_face_bar li,
+  #uv_cube_face_bar li:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  #uv_cube_face_bar li:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #uv_cube_face_bar li.selected {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+  #uv_cube_face_bar li.selected:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  .checkerboard,
+  .checkerboard_trigger .checkerboard_target {
+    --color-checker_offset: rgba(0, 0, 0, 0.9);
+    background-color: var(--dialog-gray-light) !important;
+    background-image: linear-gradient(
+        45deg,
+        var(--color-checkerboard) 25%,
+        transparent 25%
+      ),
+      linear-gradient(-45deg, var(--color-checkerboard) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--color-checkerboard) 75%),
+      linear-gradient(
+        -45deg,
+        var(--color-checker_offset) 75%,
+        var(--color-checkerboard) 75%
+      );
+    background-size: 30px 30px;
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+  }
+  .form_inline_select > li,
+  .form_inline_select > li:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  .form_inline_select > li.selected {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+  .form_inline_select > li.selected:active,
+  .form_inline_select > li:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #panel_animations #animations_list li,
+  #panel_animations #animations_list li:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  #panel_animations #animations_list li.selected {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+  }
+  #panel_animations #animations_list li.selected:active,
+  #panel_animations #animations_list li:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+  #start_files .format_page_close_button,
+  #start_files .format_page_close_button:hover {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    border-bottom: 0px solid;
+  }
+  #start_files .format_page_close_button:active {
+    color: black;
+    background: var(--surface);
+    box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+    border-bottom: 0px solid;
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+}

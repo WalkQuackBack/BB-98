@@ -1,0 +1,250 @@
+@use "styles"
+
+h1, h2, h3,
+dialog#settings h2, dialog#keybindings h2, dialog#theme h2
+    font-size: 16px
+    font-family: Arial, sans-serif
+    font-weight: 700
+
+.dark_bordered,
+input[type=email],
+input[type=number],
+input[type=password],
+input[type=text]:not(.cube_name),
+.keybindslot,
+div.nslide,
+select,
+bb-select
+    @include styles.focusable($sunken: true, $subtle: false)
+    background-color: var(--color-bright_ui)
+    padding: 3px 4px
+    height: 24px
+
+.dark_bordered
+    // Take the border out of dark bordered XD
+    border: none
+
+.numeric_input > div.tool
+    @include styles.clickable($sunken: true, $subtle: false)
+    position: absolute
+    width: 16px
+    height: 100%
+    margin: 0
+    right: 0
+    & > i
+        margin-top: 2px
+        transform: scale(0.8)
+
+input[type="checkbox"]
+    position: relative
+    font-size: 11px
+    width: 13px
+    height: 13px
+    min-width: 0
+    &::before
+        @include styles.focusable($sunken: true, $subtle: true)
+        content: ""
+        background: #fff
+        inset: 0
+        display: inline-block
+        width: 13px
+        height: 13px
+        position: absolute
+    &:checked
+        &::before
+            content: ""
+        &::after
+            content: ""
+            background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='7' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7 0H6v1H5v1H4v1H3v1H2V3H1V2H0v3h1v1h1v1h1V6h1V5h1V4h1V3h1V0z' fill='%23000'/%3E%3C/svg%3E")
+            top: 3.5px
+            left: 3.5px
+            display: block
+            height: 7px
+            position: absolute
+            width: 7px
+    &:disabled
+        background-color: silver
+        &::after
+            opacity: 0.5
+
+button
+    @include styles.clickable($sunken: false, $subtle: false)
+    font-size: 11px
+    display: inline-block
+    border: none
+    border-radius: 0
+    box-sizing: border-box
+    color: var(--color-text)
+    height: 23px
+    min-width: 75px
+    padding: 0 12px
+    // text-shadow: 0 0 #222
+    &:hover
+        background: var(--color-surface)
+        // Importants overriding importants
+        color: var(--color-text) !important
+
+.toolbar > .tool.toolbar_menu
+    width: 24px
+    & > i
+        width: auto
+        margin: auto
+        font-size: 22px
+
+.tool
+    &:not(.widget)
+        @include styles.clickable($sunken: false, $subtle: true)
+        border-bottom: none
+        width: 24px
+        height: 24px
+
+    &.side_menu_tool
+        width: 48px
+
+    [class^="icon-"]:not(.fa), [class*=" icon-"]:not(.fa)
+        transform: scale(1.1) translateY(3px)
+
+    i
+        display: block
+        margin: 4px 4px
+        &[class^="icon-"]:not(.fa), &[class*=" icon-"]:not(.fa)
+            margin: 0px auto
+        &.fa_big
+            margin: 2px auto
+
+    &.selected, &.enabled
+        @include styles.clickable($sunken: true, $subtle: true)
+        border-bottom: none
+
+    // FIX THE JITTER
+    &:active .icon
+        padding-top: 0
+
+    &.bar_select
+        &.icon_mode
+            background: none
+            box-shadow: none
+        .select_option
+            @include styles.clickable($sunken: false, $subtle: true)
+            border-bottom: none
+            margin-inline: 1px
+            height: 24px
+            i
+                margin: 1px auto
+            &.selected
+                @include styles.clickable($sunken: true, $subtle: true)
+                background-color: var(--color-ui)
+                color: var(--color-text)
+        &:active
+            .icon:not(.fa_big)
+                padding-top: 0
+            .icon.fa_big
+                padding-top: 1px
+
+bb-select
+    @include styles.border($sunken: true, $subtle: false)
+    appearance: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    border-radius: 0
+    padding-right: 32px
+    font-size: 11px
+    position: relative
+    &::before
+        @include styles.border($sunken: false, $subtle: false)
+        content: ""
+        background-color: var(--color-ui)
+        width: 18px
+        height: 18px
+        position: absolute
+        top: auto
+        right: 2px
+        bottom: 1px
+        background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0v16h1V1h14V0z' fill='%23DFDFDF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1v14h1V2h12V1H2z' fill='%23fff'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H0v-1h15V0h1v17z' fill='%23000'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1h-1v14H1v1h14V1z' fill='gray'/%3E%3Cpath fill='silver' d='M2 2h12v13H2z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 6H4v1h1v1h1v1h1v1h1V9h1V8h1V7h1V6z' fill='%23000'/%3E%3C/svg%3E")
+        background-position: left 0px
+        background-repeat: no-repeat
+
+input[type=range]
+    height: 24px
+
+.sp-color
+    right: 20px
+    cursor: default
+    &:active
+        cursor: crosshair
+        .sp-dragger
+            opacity: 0.3
+            mix-blend-mode: normal
+    &::after
+        content: ""
+        @include styles.border($sunken: true, $subtle: false)
+        position: absolute
+        inset: 0
+
+.sp-hue
+    width: 16px
+    &::after
+        content: ""
+        @include styles.border($sunken: true, $subtle: false)
+        position: absolute
+        inset: 0
+
+.sp-dragger
+    background: transparent
+    border: none
+    margin-top: 7px
+    margin-left: -4px
+    mix-blend-mode: difference
+    &::before, &::after
+        content: ""
+        display: block
+        position: absolute
+        width: 24px
+        height: 2px
+        background: #ffffff
+
+    &::after
+        transform: rotate(90deg)
+
+.sp-replacer
+    @include styles.clickable($sunken: true, $subtle: false)
+    margin: 0
+    cursor: default
+    padding: 0
+    width: 18px
+    height: 15px
+    background: var(--color-ui)
+    color: var(--color-text)
+
+.sp-slider
+    border-left-color: transparent
+    border-width: 6px
+    right: -6px
+    margin-top: -4px
+
+.sp-preview
+    height: 11px
+    width: 14px
+    margin: 2px
+
+.sp-dd
+    display: none
+
+a.open-in-browser
+    color: var(--color-accent)
+
+#quick_message_box
+    top: 96px
+    bottom: auto
+    width: fit-content
+    padding: 2px 6px
+    background-color: #ffffc2
+    color: var(--color-bright_ui_text)
+    box-shadow: none
+    border-radius: 4px
+    border: 1px solid var(--color-border)
+    animation: quick_message_box_in 300ms steps(8)
+
+@keyframes quick_message_box_in
+    from
+        opacity: 0

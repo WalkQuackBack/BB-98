@@ -1,0 +1,339 @@
+@use "../foundation/_styles"
+
+#start_screen
+    padding-top: 32px
+
+    // Forked off Ewan Blockbenchcord code
+    & > content:not(:has(#splash_screen))
+        &::before
+            content: ""
+            position: absolute !important
+            inset-inline: 0
+            height: calc( 100% - 89px )
+            margin-top: -32px
+            height: calc( 100% - 89px )
+            background-image: linear-gradient(#0006, #0000 43%), url("assets/splash_art/1.webp")
+            background-size: cover
+            background-position: 50% 50%
+
+    & > content
+        box-shadow: none
+        max-width: 800px
+
+        & > section:not(#splash_screen)
+            @include styles.border($sunken: false, $subtle: false)
+            &:nth-child(2)
+                margin-top: 48px
+
+    section#quick_setup
+        border-block: none
+        @include styles.border($sunken: false, $subtle: false)
+        & > div
+            width: 240px
+            max-width: 100%
+            margin-right: 12px
+            margin-top: 0
+            margin-bottom: 0
+            &:has(.quick_setup_theme)
+                width: 400px !important
+            & > label
+                min-width: 64px
+
+    .recent_project
+        &:not(.thumbnail)
+            @include styles.clickable($sunken: false, $subtle: true)
+            font-size: 11px
+            padding-block: 1px
+            padding-inline: 4px
+            .recent_favorite_button
+                visibility: visible
+        &.thumbnail
+            @include styles.clickable($sunken: false, $subtle: false)
+            background-color: var(--color-ui)
+            color: #000000
+            height: 110px
+            .thumbnail_image
+                width: 160px
+                height: 80px
+            .recent_project_name
+                font-size: 11px
+                height: auto
+                bottom: 6px
+            &:hover
+                background-color: var(--color-ui)
+                .recent_project_name, i
+                    color: #000000
+
+            .icon_wrapper
+                background: transparent
+
+div.start_screen_right
+    padding: 16px
+    h3
+        font-family: var(--font-main)
+        font-size: 11px
+        padding-bottom: 0
+    & > p:not(:empty)
+        padding-bottom: 6px
+
+#start_screen div.graphic.graphic_icon i
+    font-size: 32px
+
+div.start_screen_left
+    padding-inline: 16px
+
+span.recent_project_date:before
+    content: none
+
+#start_files
+    @include styles.border($sunken: false, $subtle: false)
+    li.format_category
+        @include styles.border($sunken: true, $subtle: true)
+        padding-block: 2px
+        position: relative
+        margin: 0px
+        padding-top: 6px
+
+        &::before
+            content: ""
+            width: calc( 100% - 6px )
+            height: 24px
+            position: absolute
+            left: 3px
+            top: 2px
+            @include styles.border($sunken: false, $subtle: true)
+
+        & > ul
+            margin-inline: 2px
+            margin-top: 4px
+
+        & > label
+            margin-left: 12px
+            font-size: 11px
+            font-weight: 700
+    div.start_screen_left
+        @include styles.border($sunken: false, $subtle: false)
+        padding: 12px 6px
+        background-color: var(--color-ui)
+        h2
+            font-family: var(--font-main)
+            font-size: 11px
+            padding-left: 12px
+            margin-left: 0
+
+    div.start_screen_right
+        @include styles.border($sunken: false, $subtle: false)
+        padding-inline: 16px
+        padding-block: 20px
+        background-color: var(--color-ui)
+        h2
+            font-family: var(--font-main)
+            padding-left: 0
+            font-size: 11px
+            order: 1
+            // Need more specificty
+            margin-bottom: 0 !important
+
+        & > div:has(.format_target) > content
+            order: 2
+
+        & > p.format_description
+            font-size: 11px
+            order: 3
+        .button_bar
+            order: 1500
+            margin-top: 0
+            button#create_new_model_button
+                margin-top: 12px !important
+                height: 24px
+                width: 100%
+                position: relative
+                & > i
+                    display: none
+
+        & > ul
+            max-height: 470px
+            padding-right: 0
+            overflow-y: auto
+            grid-template-columns: repeat(auto-fit, 170px)
+            grid-gap: 5px
+            margin-left: 0
+            margin-top: 6px
+
+        // TODO: Potentially move to elements
+        // Nth-child is for plugin compat
+        & > content, & > div:nth-child(3)
+            order: 1000
+            img
+                width: auto
+                max-height: 225px
+            .markdown
+                p
+                    margin: 0
+                ul
+                    li
+                        margin: 2px 0
+            h3.markdown
+                padding-bottom: 14px
+    li.format_entry
+        padding-left: 12px
+
+        display: flex
+        align-items: center
+
+        &:hover
+            @include styles.border($sunken: false, $subtle: true)
+
+        &.selected
+            @include styles.border($sunken: true, $subtle: true)
+            background-color: transparent
+            color: var(--color-text)
+            &::after
+                content: none
+
+        &.start_screen_link::after
+            color: var(--color-text)
+            font-size: 10px
+            margin-left: 4px
+            margin-right: 0
+
+        img.icon
+            width: 16px
+            height: 16px
+
+        i
+            font-size: 16px
+            margin: 0
+
+        span.icon_wrapper
+            height: 16px
+            width: 16px
+            display: flex
+            margin-right: 4px
+        label
+            font-size: 11px
+
+p.format_target
+    padding: 0
+    line-height: 12px
+    margin-top: 2px
+    order: 2
+    span
+        padding: 2px 4px
+        border-radius: 0
+        margin-inline: 2px
+
+// TODO: Fix the specifity wars in a more neat way
+#start_screen > content > section#splash_screen
+    // TODO: Either remove or restore the below code
+    // @include styles.border($sunken: false, $subtle: false)
+    // background: var(--color-ui)
+    // flex-grow: 1
+    // padding: 6px
+    // margin: 0px
+
+    color: var(--color-accent_text)
+
+    // TODO: fix the specifity wars
+    position: absolute !important
+    left: 0
+    margin-top: -32px
+    height: calc( 100% - 89px )
+
+    & > div > p
+        margin-right: 3px
+
+    .splash_art_slideshow_image.slideshow_previous
+        position: relative
+        margin-left: -100%
+        animation: fade_out_slideshow 500ms forwards
+
+    .start_screen_graphic_description
+        background: var(--color-accent)
+        padding: 4px
+        inset-inline: 0
+        top: 0
+        height: 24px
+        z-index: 1
+        & > p
+            text-align: center
+            font-size: 11px
+
+    .splash_art_slideshow_points
+        top: 0
+        right: 0
+        left: auto
+        bottom: auto
+        z-index: 2
+        opacity: 1
+        transition: none
+        li
+            @include styles.clickable($sunken: false, $subtle: false)
+            &::after
+                content: "1"
+                border-radius: 0
+                font-size: 11px
+                width: 100%
+                height: 100%
+                background: none
+                margin: 0
+                margin-top: 4px
+            &:nth-child(2):after
+                content: "2"
+            &:nth-child(3):after
+                content: "3"
+            &:nth-child(4):after
+                content: "4"
+            &:nth-child(5):after
+                content: "5"
+            &:hover
+                &::after
+                    background: none
+            &.selected
+                @include styles.clickable($sunken: true, $subtle: false)
+                &::after
+                    background: none
+
+    &:hover
+        .splash_art_slideshow_points
+            opacity: 1
+
+#start_screen_view_menu
+    height: 24px
+    top: 16px
+    right: 24px
+
+    .search_bar
+        @include styles.border($sunken: false, $subtle: true)
+        min-width: 24px
+        margin-right: 0
+        i
+            right: 1px
+
+        input
+            transition: none
+
+        &.folded > input
+            visibility: hidden
+
+    li
+        margin-inline: 0
+        &.selected
+            border-bottom: 0px solid
+
+.quick_setup_theme
+    & > div
+        width: 20px
+        height: 20px
+        &:has(i)
+            padding-top: 0
+        & > i
+            font-size: 16px
+            margin-left: 1px
+
+#start_screen i.start_screen_close_button
+    @include styles.clickable($sunken: false, $subtle: false)
+    font-size: 16px
+    color: #000
+    &:not(:hover)
+        opacity: 1

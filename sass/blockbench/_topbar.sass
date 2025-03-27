@@ -1,0 +1,97 @@
+@use "../foundation/_styles"
+header
+    @include styles.border($sunken: false, $subtle: false)
+    height: 40px
+    background: var(--dialog-blue)
+    position: relative
+    & > *:not(#corner_logo, #menu_bar, #windows_window_menu, .app-drag-region)
+        position: absolute
+        top: 20px
+        right: 0
+
+div#corner_logo
+    height: 20px
+    width: 20px
+    overflow: hidden
+    order: 10
+    img
+        transform: scale(0.7) translate(-35px, -4px)
+
+#windows_window_menu
+    order: 30
+    padding-right: 2px
+    li
+        @include styles.clickable($sunken: false, $subtle: false)
+        display: block
+        opacity: 1
+        max-height: 14px
+        max-width: 16px
+        margin: 3px 2px 3px 3px
+        margin-top: 4px
+        background-position: top 3px left 4px
+        background-repeat: no-repeat
+
+        &:hover,
+        &.wwm_r:hover
+            background-color: var(--color-ui)
+
+        &:nth-child(1)
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='6' height='2' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000' d='M0 0h6v2H0z'/%3E%3C/svg%3E")
+            background-position: bottom 3px left 4px
+            background-repeat: no-repeat
+        &:nth-child(2)
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='9' height='9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M9 0H0v9h9V0zM8 2H1v6h7V2z' fill='%23000'/%3E%3C/svg%3E")
+            background-position: top 2px left 3px
+            background-repeat: no-repeat
+        &.wwm_r
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='8' height='7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 0h2v1h1v1h2V1h1V0h2v1H7v1H6v1H5v1h1v1h1v1h1v1H6V6H5V5H3v1H2v1H0V6h1V5h1V4h1V3H2V2H1V1H0V0z' fill='%23000'/%3E%3C/svg%3E")
+            background-position: top 3px left 4px
+            background-repeat: no-repeat
+
+        & > svg
+            display: none
+
+div#header_free_bar.app-drag-region
+    order: 15
+    height: 20px
+    color: #ffffff
+    font-size: 11px
+    font-weight: 700
+    text-align: left
+    &.resize_space
+        margin-top: 0
+        padding: 3px
+        height: 20px
+
+ul#menu_bar
+    @include styles.border($sunken: false, $subtle: false)
+    width: 100%
+    height: 20px
+    padding: 1px
+    padding-left: 4px
+    top: 20px
+    order: 20
+    background-color: var(--color-ui)
+    position: absolute
+
+li.menu_bar_point
+    font-size: 11px
+    padding: 0
+    padding-inline: 8px
+    margin-top: -1px
+    width: auto
+    min-width: 0
+    line-height: 20px
+    vertical-align: top
+    &:hover
+        @include styles.border($sunken: false, $subtle: true)
+    &.opened
+        @include styles.border($sunken: true, $subtle: true)
+        color: var(--color-text)
+        background: none
+
+body:has(dialog)
+    header, .panel_handle
+        background: var(--dialog-gray)
+    #header_free_bar.app-drag-region
+        color: var(--InactiveTitleText)

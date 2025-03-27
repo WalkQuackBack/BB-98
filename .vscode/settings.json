@@ -1,0 +1,6 @@
+{
+  "[sass]": {
+    "editor.defaultFormatter": "syler.sass-indented"
+  },
+  "files.autoSave": "off"
+}

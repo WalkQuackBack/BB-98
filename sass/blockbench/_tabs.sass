@@ -1,0 +1,40 @@
+@use "../foundation/styles"
+
+#tab_bar
+    height: 24px
+    padding-left: 0
+    .project_tab
+        @include styles.focusable($sunken: false, $subtle: false)
+        padding: 0 4px
+        margin-left: 1px
+        align-items: center
+        & > .icon
+            transform: scale(0.8)
+
+        &, &.selected
+            border-top: none
+
+        & > label
+            height: 16px
+
+        &.selected
+            @include styles.focusable($sunken: true, $subtle: false)
+            @include styles.focused
+
+#tab_bar.drag_mode .project_tab
+    transition: 100ms linear transform
+
+#tab_bar .project_tab.move_back
+    left: 0
+    transform: translateX(-100%)
+
+#tab_bar .project_tab.move_forth
+    left: 0
+    transform: translateX(100%)
+
+#new_tab_button
+    @include styles.clickable($sunken: false, $subtle: false)
+    width: 24px
+    padding-top: 0
+    & > i
+        transform: scale(0.8)

@@ -1,0 +1,35 @@
+@use "../foundation/styles"
+
+.search_bar i
+    float: right
+    position: absolute
+    right: 2px
+    margin-top: 1px
+    transform: scale(0.8)
+
+#drag_out_window_helper
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff
+    border: none
+    padding: 3px
+    background-image: none
+    pointer-events: none
+    & > div
+        background: var(--dialog-blue)
+        height: 20px
+
+#page_wrapper.accept_detached_tab
+    & > *
+        filter: none
+    #blackout
+        display: block !important
+        z-index: 100 !important
+    &::after
+        content: "💅"
+        font-size: 100vh
+        z-index: 112
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        color: var(--color-accent)
+        right: auto
+        width: auto

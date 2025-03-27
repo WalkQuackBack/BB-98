@@ -1,0 +1,127 @@
+@use "../foundation/_styles"
+
+.contextMenu
+    @include styles.border($sunken: false, $subtle: false)
+    padding-block: 0
+    background-color: var(--color-ui)
+    border: 1px solid var(--color-ui)
+    padding: 2px
+    li
+        height: 22px
+        padding-left: 18px
+        align-items: center
+        display: flex
+        &.parent
+            &::after
+                content: ""
+                background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAMAAADXT/YiAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURf///wAAAFXC034AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAACZJREFUGFdjYIQBEAvCA7PATAgLJgNkASl0MSABYYEYUJKRkZERAAvFAEId5WqqAAAAAElFTkSuQmCC")
+                background-size: 9px
+                background-repeat: no-repeat
+                image-rendering: pixelated
+                width: 9px
+                height: 9px
+                margin: 0
+                margin-right: -12px
+                filter: brightness(0)
+            &.focused, &.opened
+                &::after
+                    filter: brightness(1)
+
+        &.hybrid_parent.opened
+            color: var(--color-text)
+
+        & > i,
+        & > i[class^="icon-"]:not(.fa),
+        & > img.icon
+            margin-left: -12px
+            font-size: 14px
+            line-height: 14px
+            width: 16px
+            height: 16px
+            image-rendering: pixelated
+            &.fa_big
+                font-size: 12px
+        & > span
+            line-height: 1.5
+            font-size: 11px
+
+    .menu_more_button
+        width: 22px
+        height: 22px
+        padding: 2px
+        & > i
+            font-size: 16px
+            margin-left: -2px
+
+li.menu_separator
+    height: 1px
+    margin-block: 3px
+    box-shadow: 0px 1px #ffffff
+
+#action_selector
+    height: 24px
+    box-shadow: 0 0 0 1920px rgba(59, 59, 59, 0.5)
+    & > .tool
+        height: 100%
+        margin: 0
+        padding-top: 0
+        background-color: var(--color-ui)
+
+    .action_selector_type_overlay
+        background-color: #FFFFFF
+        height: 22px
+        opacity: 0.3
+        top: 2px
+        left: 24px
+        padding-inline-end: 2px
+        mix-blend-mode: lighten
+    & > i
+        @include styles.clickable($sunken: false, $subtle: true)
+        right: 0
+        top: 0
+        width: 24px
+        height: 24px
+        font-size: 16px
+        text-align: center
+        line-height: 24px
+
+    & > input
+        width: calc(100% - 48px)
+        height: auto
+        padding: 3px 4px
+        border-left: none
+        background-color: var(--color-bright_ui)
+    #action_selector_list
+        background: transparent
+        box-shadow: none
+        & > div
+            @include styles.border($sunken: false, $subtle: false)
+            position: fixed
+            padding: 2px 6px
+            width: 340px
+            margin-top: 4px
+            font-size: 11px
+            &:empty
+                visibility: hidden
+
+        ul
+            @include styles.border($sunken: false, $subtle: false)
+            color: var(--color-text)
+            background-color: var(--color-ui)
+            border: 1px solid var(--color-ui)
+
+            &:empty
+                visibility: hidden
+            & > li
+                height: 22px
+                padding-left: 18px
+                align-items: center
+                & > i,
+                & > i[class^="icon-"]:not(.fa),
+                & > img.icon
+                    margin-left: -12px
+                    font-size: 16px
+                    width: 16px
+                    height: 16px
+                    &.fa_big
+                        font-size: 14px

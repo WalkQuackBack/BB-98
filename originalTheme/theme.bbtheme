@@ -1,0 +1,29 @@
+{
+	"name": "Copy of Copy of Copy of Copy of Blockbench98",
+	"author": "",
+	"borders": false,
+	"main_font": "\"Pixelated MS Sans Serif\", MS sans serif, sans-serif",
+	"headline_font": "",
+	"code_font": "Courier, monospace",
+	"css": "",
+	"thumbnail": ".theme_preview_menu {\n  margin-top: 20px;\n  background-color: var(--color-back);\n  box-shadow: inset -2px -2px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;\n  background-color: var(--color-back);\n  border: 1px solid var(--color-back);\n} \n\n.theme_preview_menu > .theme_preview_text {\n    background-color: #000000;\n    opacity: 1;\n}\n\n.theme_preview_header {\n  background: linear-gradient(90deg, #000080, #1084d0);\n  height: 12px;\n  position: relative;\n  z-index: 1;\n}\n\n.theme_preview_menu_header {\n    box-shadow:  inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a;\n    background: none;\n    margin-top: 12px;\n}\n\n.theme_preview_menu_header > .theme_preview_text {\n     background-color: #000000;\n}\n",
+	"colors": {
+		"ui": "#c0c0c0",
+		"back": "#c0c0c0",
+		"dark": "#c0c0c0",
+		"border": "#848484",
+		"selected": "#808080",
+		"button": "#dfdfdf",
+		"bright_ui": "#f4f3ff",
+		"accent": "#0000ff",
+		"frame": "#c2c6ca",
+		"text": "#000000",
+		"light": "#000000",
+		"accent_text": "#ffffff",
+		"bright_ui_text": "#000006",
+		"subtle_text": "#000000",
+		"grid": "#0000bd",
+		"wireframe": "#b1b1ff",
+		"checkerboard": "#dadada"
+	}
+}

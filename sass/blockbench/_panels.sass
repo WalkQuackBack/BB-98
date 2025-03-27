@@ -1,0 +1,448 @@
+@use "../foundation/_styles"
+// General panel
+
+h3.panel_handle
+    background: var(--dialog-blue)
+    height: 20px
+    & > label
+        font-family: var(--font-main)
+        color: var(--TitleText)
+        font-size: 11px
+        font-weight: 700
+        text-transform: capitalize
+        cursor: default
+        position: relative
+        padding: 0 8px
+        padding-left: 20px
+        margin-left: 4px
+        &::before
+            content: ""
+            width: 16px
+            height: 16px
+            display: inline-block
+            position: absolute
+            left: 0
+            top: 0
+            // Fallback icon
+            background-image: var(--icon-application_generic)
+            background-repeat: no-repeat
+            background-size: 16px 16px
+
+    & > .tool.panel_control
+        @include styles.clickable($sunken: false, $subtle: false)
+        display: block
+        opacity: 1
+        max-height: 14px
+        max-width: 16px
+        margin: 3px 2px 3px 3px
+        background-position: top 3px left 4px
+        background-repeat: no-repeat
+        &.panel_folding_button
+            background-image: var(--icon-panel_folding)
+            background-position: bottom 3px left 4px
+            background-repeat: no-repeat
+        &.panel_expanding_button
+            background-image: var(--icon-panel_maximize)
+            background-position: top 2px left 3px
+            background-repeat: no-repeat
+        &:not(.panel_folding_button, .panel_expanding_button)
+            background-image: var(--icon-panel_options)
+            background-position: left 0px
+            background-repeat: no-repeat
+        i
+            display: none
+
+.panel
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff
+    padding: 3px
+    .bar.next_to_title
+        height: 16px
+        margin-right: 64px
+        margin-top: -20px
+
+    &[order="1"]::before
+        bottom: 12px
+
+    &[order]::before
+        height: 2px
+        margin-top: -4px
+        box-shadow: none
+
+    &:has(.panel_resize_side:active)
+        outline: 2px solid #ffffff
+        background: none
+        box-shadow: none
+        opacity: 1
+        mix-blend-mode: difference
+        & > *:not(.panel_resize_side)
+            opacity: 0
+    &.floating
+        // hardcode border for now
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px grey, inset 2px 2px #fff
+        padding: 3px
+
+        position: absolute
+        border: none
+        box-sizing: content-box
+        z-index: 14
+        h3.panel_handle
+            & > .tool.panel_control.panel_expanding_button
+                background-image: var(--icon-panel_restore)
+                background-position: top 2px left 3px
+                background-repeat: no-repeat
+
+        &.dragging
+            outline: 2px solid #ffffff
+            background: none
+            box-shadow: none
+            opacity: 1
+            mix-blend-mode: difference
+            & > *
+                opacity: 0
+
+.sidebar.drop_target::after
+    opacity: 0
+
+#center
+    h3.panel_handle
+        height: 20px
+
+    &[snapside=top]::before, &[snapside=bottom]::before
+        opacity: 1
+        height: 48px
+
+    &[snapside=top]::before
+        background: linear-gradient(180deg, var(--color-accent), transparent)
+
+    &[snapside=bottom]::before
+        background: linear-gradient(0deg, var(--color-accent), transparent)
+
+.resizer, .panel_sidebar_resize_handle
+    &:hover, &.dragging
+        background: none
+        opacity: 1
+    &.horizontal
+        margin-top: -16px
+        height: 12px
+    &.vertical
+        width: 12px
+        margin-left: -6px
+
+.tabs_small
+    height: 24px
+    overflow-y: hidden
+    label
+        box-shadow: inset -1px 0 #0a0a0a, inset 1px 1px #dfdfdf, inset -2px 0 grey, inset 2px 2px #fff
+        border-top-left-radius: 3px
+        border-top-right-radius: 3px
+        padding: 0
+        padding-inline: 4px
+        margin-top: 4px
+
+    input[type="radio"]:checked+label
+        margin-top: 0
+        border-bottom: none
+
+// Color panel
+#panel_color
+    &:has(.sp_container)
+        min-height: 600px
+        color: red
+
+    .sp-container.sp-flat
+        margin: 2px 4px
+    #color_panel_head
+        padding-block: 4px 10px
+        gap: 4px
+        @include styles.border($sunken: true, $subtle: false)
+        height: auto
+        .chosen
+            width: 60px
+            height: auto
+            & > .switcher
+                top: 12px
+            & > .main, & > .secondary
+                @include styles.border($sunken: false, $subtle: false)
+                outline: 2px solid var(--color-back)
+                outline-offset: -4px
+                width: 32px
+                height: 22px
+                border: none
+                &.selected
+                    @include styles.border($sunken: true, $subtle: false)
+            & > .secondary
+                left: 0
+                top: 24px
+        .side
+            height: 100%
+            flex-grow: 1
+            overflow: hidden
+            input
+                width: 100%
+                height: 24px
+                padding: 3px 4px
+                margin-top: 2px
+                margin-bottom: 3px
+                font-family: var(--font-main)
+                background: var(--color-bright_ui)
+    #color-wheel
+        margin-inline: auto
+
+.toolbar[toolbar_id="palette"]
+    margin-top: 6px
+
+#color_history
+    height: 16px
+    flex-wrap: wrap
+    gap: 1px
+    & > li
+        width: 16px
+        min-width: 16px
+        @include styles.border($sunken: false, $subtle: false)
+
+#palette_list
+    padding-inline: 0
+    min-height: 0
+    height: auto
+    max-height: 200px
+    .color
+        width: 24px
+        height: 24px
+        margin: 1px
+        .color_inner
+            @include styles.border($sunken: false, $subtle: false)
+            outline: 2px solid var(--color-back)
+            outline-offset: -4px
+
+        &:hover
+            padding: 0
+            outline: 1px solid var(--color-bright_ui)
+
+        &.selected
+            padding: 0
+            .color_inner
+                @include styles.border($sunken: true, $subtle: false)
+
+// UV panel
+#UVEditor
+    .tool.widget[toolbar_item=uv_rotation]
+        margin-left: 12px
+
+#uv_resolution_status
+    @include styles.border($sunken: true, $subtle: false)
+    font-size: 11px
+    margin-top: 2px
+    height: 14px
+    background-color: var(--color-ui)
+
+#uv_cube_face_bar
+    display: flex
+    height: 24px
+
+#uv_cube_face_bar li
+    @include styles.border($sunken: false, $subtle: true)
+    &.selected
+        @include styles.border($sunken: true, $subtle: true)
+        border-bottom: none
+        color: var(--color-accent)
+
+.uv_face_properties_line
+    @include styles.border($sunken: false, $subtle: true)
+    height: auto
+    padding-inline: 12px
+    padding-block: 6px
+    margin-block: 1px
+    gap: 0
+    & > label:first-of-type
+        @include styles.border($sunken: true, $subtle: true)
+        padding-block: 2px
+        padding-left: 6px
+    input[type=checkbox]
+        width: 24px
+        text-align: center
+    &.selected
+        @include styles.border($sunken: true, $subtle: true)
+        & > label:first-of-type
+            text-decoration: none
+
+.face_properties_texture
+    @include styles.border($sunken: true, $subtle: true)
+    width: auto
+    margin-left: 16px
+    padding: 2px
+    .texture_dummy_icon, img
+        margin-right: 2px
+        width: 20px
+        height: 20px
+        margin-right: 4px
+        background-color: var(--color-checkerboard)
+        --color-checker_offset: rgba(0, 0, 0, 0.16)
+        background-image: linear-gradient(45deg, var(--color-checkerboard) 25%, transparent 25%), linear-gradient(-45deg, var(--color-checkerboard) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--color-checkerboard) 75%), linear-gradient(-45deg, var(--color-checker_offset) 75%, var(--color-checkerboard) 75%)
+        background-size: 10px 10px
+        background-position: 0 0, 0 15px, 15px -15px, -15px 0px
+
+.uv_face_properties_labels > label
+    @include styles.border($sunken: true, $subtle: false)
+    padding-block: 2px
+
+#uv_viewport
+    @include styles.border($sunken: true, $subtle: false)
+
+// Textures and layers panel
+#texture_list, #layers_list
+    overflow: auto
+    @include styles.border($sunken: true, $subtle: false)
+
+    & > li
+        @include styles.clickable($sunken: false, $subtle: false)
+        height: 48px
+        &.selected
+            @include styles.clickable($sunken: true, $subtle: false)
+            @include styles.focused()
+        & > .texture_icon_wrapper, & > .layer_icon_wrapper
+            @include styles.border($sunken: true, $subtle: false)
+            transform: scale(70%)
+        & > i
+            @include styles.clickable($sunken: false, $subtle: false)
+            transform: translate(0px, -5px)
+            padding: 5px
+            width: auto
+            height: fit-content
+            max-width: fit-content
+        & > .in_list_button
+            @include styles.clickable($sunken: false, $subtle: false)
+            padding: 5px
+            width: auto
+            height: 29px
+            max-width: fit-content
+
+.texture_layer .layer_icon_wrapper
+    height: 48px
+    width: 48px
+
+.texture_name
+    margin-top: 8px
+
+.texture_drag_helper
+    background-color: var(--color-checkerboard)
+    --color-checker_offset: rgba(0, 0, 0, 0.16)
+    background-image: linear-gradient(45deg, var(--color-checkerboard) 25%, transparent 25%), linear-gradient(-45deg, var(--color-checkerboard) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--color-checkerboard) 75%), linear-gradient(-45deg, var(--color-checker_offset) 75%, var(--color-checkerboard) 75%)
+    background-size: 10px 10px
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px
+    box-shadow: none
+    margin: -20px
+    border: 1px dashed var(--color-accent)
+
+// animations panel
+#animations_list
+    @include styles.border($sunken: true, $subtle: false)
+    .animation
+        @include styles.clickable($sunken: false, $subtle: false)
+        height: 48px
+        &.selected
+            @include styles.clickable($sunken: true, $subtle: false)
+            @include styles.focused()
+        & > .texture_icon_wrapper, & > .layer_icon_wrapper
+            @include styles.border($sunken: true, $subtle: false)
+            transform: scale(70%)
+        & > i
+            @include styles.clickable($sunken: false, $subtle: false)
+            transform: translate(0px, -5px)
+            padding: 5px
+            width: auto
+            height: fit-content
+            max-width: fit-content
+        & > .in_list_button
+            @include styles.clickable($sunken: false, $subtle: false)
+            padding: 5px
+            width: auto
+            height: 29px
+            max-width: fit-content
+// Outliner
+
+.outliner_object
+    margin-block: 0
+    height: 20px
+    position: relative
+
+    display: flex
+    align-items: center
+
+    .cube_name
+        padding: 0 2px
+
+    // custom icons
+    & > i
+        font-size: 12px
+
+        &.material-icons.icon
+            font-size: 16px
+
+        &.icon
+            position: relative
+            overflow: visible
+
+        &:not(.outliner_toggle)
+            filter: brightness(0.5) saturate(2)
+
+    i.outliner_toggle
+        @include styles.focusable($sunken: false, $subtle: true)
+        margin-right: 2px
+        width: 18px
+        height: 18px
+        flex-basis: 18px
+        position: relative
+        background-color: var(--color-ui)
+        &.material-icons.icon
+            font-size: 14px
+
+        &::before
+            position: absolute
+            inset-inline: 0
+            top: 50%
+            transform: translateY(-50%)
+            font-size: 10px
+
+        &:not(.icon_off)
+            @include styles.focusable($sunken: true, $subtle: true)
+
+    &.selected
+        background: var(--color-ui)
+        background-color: var(--color-accent)
+        .cube_name
+            color: var(--color-accent_text)
+        & > i:not(.outliner_toggle)
+            color: var(--color-accent_text)
+            filter: none
+
+// animations panel
+#animation_drag_helper
+    height: 32px
+    padding: 4px 4px
+    gap: 4px
+    box-shadow: none
+    align-items: center
+    border: 1px dashed var(--color-accent)
+
+// PANEL ICONS
+#panel_uv, #panel_color
+    & > h3.panel_handle > label::before
+        background-image: var(--icon-colors)
+
+#panel_textures > h3.panel_handle > label::before
+    background-image: var(--icon-images)
+
+#panel_element > h3.panel_handle > label::before
+    background-image: var(--icon-cube)
+
+#panel_outliner > h3.panel_handle > label::before
+    background-image: var(--icon-list)
+
+#panel_animations > h3.panel_handle > label::before
+    background-image: var(--icon-movie)
+
+#panel_bone > h3.panel_handle > label::before
+    background-image: var(--icon-bone_highcontrast)
+
+#panel_keyframe > h3.panel_handle > label::before
+    background-image: var(--icon-keyframe)
