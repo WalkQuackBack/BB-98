@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "dev": "deno -A compile.ts --dev",
+    "build": "deno -A compile.ts"
+  },
+  "imports": {
+    "@sass-fairy/exception": "npm:@sass-fairy/exception@^1.1.1",
+    "@sass-fairy/list": "npm:@sass-fairy/list@^1.2.4",
+    "@sass-fairy/string": "npm:@sass-fairy/string@^1.3.1",
+    "@sass-fairy/url": "npm:@sass-fairy/url@^1.0.1",
+    "@std/cli": "jsr:@std/cli@^1.0.25",
+    "@std/fs": "jsr:@std/fs@^1.0.21",
+    "@std/path": "jsr:@std/path@^1.1.3",
+    "browserslist": "npm:browserslist@^4.28.1",
+    "lightningcss": "npm:lightningcss@^1.30.2",
+    "sass": "npm:sass-embedded@^1.96.0"
+  },
+  "nodeModulesDir": "auto"
+}

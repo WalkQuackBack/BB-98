@@ -1,0 +1,37 @@
+name: Dev Releases
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.6.x
+
+      - name: Build themes
+        run: deno run build
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "date=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: dev-${{ steps.date.outputs.date }}-${{ github.run_number }}
+          prerelease: true
+          generate_release_notes: true
+          files: ./dist/*
