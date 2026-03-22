@@ -1,0 +1,39 @@
+@use "foundation/variables.scss";
+@use "foundation/scrollbars.scss";
+@use "foundation/elements.scss";
+@use "foundation/styles.scss";
+@use "foundation/icons.scss";
+
+@use "blockbench/menus.scss";
+@use "blockbench/topbar.scss";
+@use "blockbench/startScreen.scss";
+@use "blockbench/dialog.scss";
+@use "blockbench/panels.scss";
+@use "blockbench/viewport.scss";
+@use "blockbench/tabs.scss";
+@use "blockbench/misc.scss";
+@use "blockbench/PLUGINCOMPAT.scss";
+
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://jdan.github.io/98.css/ms_sans_serif.woff) format("woff");
+    src: url(https://jdan.github.io/98.css/ms_sans_serif.woff2) format("woff2");
+}
+
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    font-style: normal;
+    font-weight: 700;
+    src: url(https://jdan.github.io/98.css/ms_sans_serif_bold.woff) format("woff");
+    src: url(https://jdan.github.io/98.css/ms_sans_serif_bold.woff2) format("woff2");
+}
+
+body {
+    // Small font sizes; need high font detail
+    text-rendering: optimizeLegibility !important;
+    font-size: 11px;
+    font-family: 'Pixelated MS Sans Serif';
+}
