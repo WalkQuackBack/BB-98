@@ -245,16 +245,8 @@ label.name_space_left {
         background-color: #a5a5a5;
         mix-blend-mode: multiply;
         opacity: 1;
-        backdrop-filter: blur(1px) url('data:image/svg+xml,
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <filter id="posterize">
-                    <feComponentTransfer>
-                        <feFuncR type="discrete" tableValues="0 .25 .5 .75 1" />
-                        <feFuncG type="discrete" tableValues="0 .25 .5 .75 1" />
-                        <feFuncB type="discrete" tableValues="0 .25 .5 .75 1" />
-                    </feComponentTransfer>
-                </filter>
-            </svg>#posterize') saturate(0);
+        $posterize: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="posterize"><feComponentTransfer><feFuncR type="discrete" tableValues="0 .25 .5 .75 1" /><feFuncG type="discrete" tableValues="0 .25 .5 .75 1" /><feFuncB type="discrete" tableValues="0 .25 .5 .75 1" /></feComponentTransfer></filter></svg>#posterize');
+        backdrop-filter: blur(1px) $posterize saturate(0);
     }
 }
 
