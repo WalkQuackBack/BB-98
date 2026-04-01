@@ -19,7 +19,7 @@ const targets = browserslistToTargets(
   browserslist(['last 2 versions', 'not dead'])
 );
 
-const IN = './sass/main.sass';
+const IN = './sass/main.scss';
 const OUT = './dist';
 const PLACES_TO_WATCH = ['sass', 'Main.bbtheme'];
 
@@ -74,6 +74,7 @@ const DEFAULT_THEME = {
     dark: '#c0c0c0',
     border: '#181a1f',
     selected: '#9f9f9f',
+    elevated: '#c0c0c0',
     button: '#dfdfdf',
     bright_ui: '#ffffff',
     accent: '#0000ff',
