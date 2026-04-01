@@ -1,7 +1,7 @@
 {
   "tasks": {
-    "dev": "deno -A compile.ts --dev",
-    "build": "deno -A compile.ts"
+    "dev": "deno -A scripts/compile.ts --dev",
+    "build": "deno -A scripts/compile.ts"
   },
   "imports": {
     "@sass-fairy/exception": "npm:@sass-fairy/exception@^1.1.1",

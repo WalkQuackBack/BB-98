@@ -1,0 +1,49 @@
+/* TODO */
+body {
+    --color-ui: #000; 
+    --color-back: #000; 
+    --color-dark: #000; 
+    --color-border: #000; 
+    --color-selected: #000; 
+    --color-elevated: #000; 
+    --color-button: #000; 
+    --color-bright_ui: #000; 
+    --color-accent: #000; 
+    --color-frame: #000; 
+    --color-text: #000; 
+    --color-light: #000; 
+    --color-accent_text: #000; 
+    --color-bright_ui_text: #000; 
+    --color-subtle_text: #000; 
+    --color-grid: #000; 
+    --color-wireframe: #000; 
+    --color-checkerboard: #000; 
+
+    --color-ui: #c0c0c0;
+    --color-back: #c0c0c0;
+    --color-dark: #c0c0c0;
+    --color-border: #181a1f;
+    --color-selected: #9f9f9f;
+    --color-button: #dfdfdf;
+    --color-bright_ui: #ffffff;
+    --color-accent: #0000ff;
+    --color-frame: #c2c6ca;
+    --color-text: #000000;
+    --color-light: #000000;
+    --color-accent_text: #ffffff;
+    --color-bright_ui_text: #000006;
+    --color-subtle_text: #000000;
+    --color-grid: #0000bd;
+    --color-wireframe: #b1b1ff;
+    --color-checkerboard: #dadada;
+
+    --color-elevated: var(--color-ui);
+
+    /* --font-custom-main: #000; 
+	--font-custom-headline: #000; 
+	--font-custom-code: #000; */
+}
+
+@scope (thumbnail) {
+    /* Thumbnail code */
+}
