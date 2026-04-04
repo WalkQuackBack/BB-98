@@ -1,0 +1,126 @@
+@use "../../abstracts/mixins" as styles;
+
+// themes dialog
+dialog#theme {
+    .dialog_wrapper {
+        min-height: 0;
+    }
+    max-width: 600px;
+}
+
+#theme_editor:has(#thumbnail_editor) > div {
+    h2.i_b, .theme_preview {
+        position: absolute;
+        z-index: 1;
+    }
+    .theme_preview {
+        margin-top: 24px;
+    }
+}
+
+#thumbnail_editor {
+    width: 60%;
+    margin-left: 40%;
+    max-height: 300px;
+}
+
+#css_editor {
+    max-height: calc(300px - 20px);
+}
+
+#theme_list {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    height: 400px;
+    grid-gap: 6px;
+    .theme_preview {
+        outline: 2px solid var(--color-accent);
+        box-shadow: 0 0 0 2px var(--color-ui);
+        outline-offset: 2px;
+        height: 96px;
+        transform: scale(0.8);
+        &_center {
+            width: 30px;
+            height: 30px;
+            margin-top: 50px;
+        }
+    }
+    & > .theme {
+        @include styles.border($sunken: false, $subtle: false);
+        border: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 6px;
+
+        &.selected {
+            @include styles.border($sunken: true, $subtle: false);
+            background: var(--color-ui);
+            border: none;
+        }
+        &:hover {
+            border: none;
+        }
+    }
+}
+
+.theme_name {
+    font-size: 11px;
+    margin-top: 0px;
+    height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.theme_author:not(:empty) {
+    font-size: 11px;
+    margin-top: 4px;
+    border-top: 1px solid var(--color-border);
+}
+
+.theme_author:empty {
+    font-size: 11px;
+    margin-top: 4px;
+    border-top: 1px solid var(--color-border);
+}
+
+div#color_wrapper {
+    columns: unset;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 64px);
+    gap: 4px;
+    overflow: visible;
+}
+
+.layout_color_preview {
+    height: 24px;
+    width: 48px;
+    position: relative;
+    @include styles.border($sunken: true, $subtle: true);
+    outline: 1px solid var(--color-border);
+}
+
+.color_field {
+    min-height: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .desc {
+        display: inline;
+        width: auto;
+    }
+    .desc > h4 {
+        font-size: 11px;
+        width: 100%;
+        height: 24px;
+        text-align: center;
+        line-height: 0.95;
+        padding-top: 4px;
+    }
+    .desc > p {
+        display: none;
+    }
+}

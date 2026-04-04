@@ -1,4 +1,4 @@
-@use "../foundation/styles";
+@use "../abstracts/mixins" as styles;
 
 .search_bar i {
     float: right;

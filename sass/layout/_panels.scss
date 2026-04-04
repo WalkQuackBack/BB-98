@@ -1,4 +1,4 @@
-@use "../foundation/_styles";
+@use "../abstracts/mixins" as styles;
 // General panel
 
 h3.panel_handle {

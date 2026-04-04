@@ -1,4 +1,4 @@
-@use "../foundation/styles";
+@use "../abstracts/mixins" as styles;
 
 #center {
     @include styles.border($sunken: true, $subtle: false);

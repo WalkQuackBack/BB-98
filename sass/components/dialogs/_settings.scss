@@ -1,0 +1,61 @@
+@use "../../abstracts/mixins" as styles;
+
+// settings dialog
+dialog#settings {
+    .dialog_wrapper {
+        min-height: 0;
+    }
+}
+
+.settings_list {
+    li {
+        display: flex;
+        padding: 2px 1px;
+        margin: 4px 0;
+        &:not(:has(input[type=checkbox], .numeric_input)) {
+            margin-left: 13px;
+        }
+
+        &:has(div.bar_select, input[type=text]) {
+            justify-content: space-between;
+        }
+
+        & > .setting_label {
+            order: 10;
+            width: auto;
+        }
+
+        input[type=text] {
+            margin: 8px;
+        }
+    }
+
+    div.bar_select, input[type=text] {
+        min-width: 45%;
+        // Overriding element style (fix if can later)
+        width: auto !important;
+        order: 20;
+    }
+
+    .setting_element {
+        text-align: center;
+        float: left;
+        &:has(input[type=checkbox]) {
+            margin-top: 12px;
+            width: auto;
+        }
+    }
+
+    .setting_name, .setting_description {
+        font-size: 11px;
+        line-height: 14px;
+    }
+}
+
+#settings_profile_wrapper {
+    & > bb-select {
+        min-width: 0;
+        margin-inline: 6px;
+        margin-bottom: 6px;
+    }
+}

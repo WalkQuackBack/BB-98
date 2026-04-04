@@ -1,0 +1,28 @@
+@use "../../abstracts/mixins" as styles;
+
+// plugins dialog
+#plugin_list {
+    & > li {
+        @include styles.border($sunken: false, $subtle: false);
+        margin: 2px;
+        padding: 6px 12px;
+        cursor: default;
+        .description {
+            font-size: 11px;
+        }
+        ul.plugin_tag_list {
+            margin-top: 2px;
+            li {
+                height: auto;
+                font-size: 11px;
+                padding: 2px 6px;
+                border-radius: 0;
+                outline: 1px solid var(--color-border);
+            }
+        }
+        &.selected {
+            @include styles.border($sunken: true, $subtle: false);
+            background-color: var(--color-ui);
+        }
+    }
+}

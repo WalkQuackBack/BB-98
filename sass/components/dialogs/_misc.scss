@@ -1,0 +1,47 @@
+@use "../../abstracts/mixins" as styles;
+
+// brush presets dialog
+ul#brush_preset_bar > li {
+    @include styles.focusable($sunken: false, $subtle: true);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    &.selected {
+        @include styles.focusable($sunken: true, $subtle: true);
+        border-bottom: none;
+    }
+    & > i {
+        display: block;
+        margin: auto;
+        transform: scale(0.8);
+        &.fa_big {
+            margin: 2px auto;
+        }
+    }
+}
+
+// bar item list
+#bar_item_list {
+    @include styles.border($sunken: true, $subtle: false);
+    padding: 1px;
+    background-color: var(--color-back);
+    li {
+        padding: 2px 4px;
+        height: 20px;
+        &:hover {
+            background: var(--color-accent);
+            color: var(--color-accent_text);
+        }
+    }
+}
+
+// PER DIALOG APPLICATION ICONS
+
+dialog {
+    &#brush_options .dialog_handle::before {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAS1BMVEUAAACGhob4+PhmZmYAAADMzMyysrLAwMD/AACAAACAgAD//wAAAIAAAP/MAGZNTU13d3c5OTlCQkKZmZmgoKTq6urX19fj4+P///+tmNjPAAAAAXRSTlMAQObYZgAAAAFiS0dEGJtphR4AAAAHdElNRQfiBhoALTbILJ0EAAAAf0lEQVQY01XO6xqCIAwG4J3JolQIvf87bUwy+x7+7GWDAQD+AhEkYlHyDHEwPIBcWLBfOTCJBxgl0W1SQhFVFZ8wSQ73h78TAPkpr6nXPhaAOX/rDjPiEmcdUOLDZFgGQDGrb15WPaG1zao3nLBT2ypeO2hXu3YE1L7msSnIXz48EgVQEyjFRAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0wNi0yNlQwMDo0NTo1NC0wNDowMGovbQQAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMDYtMjZUMDA6NDU6NTQtMDQ6MDAbctW4AAAAAElFTkSuQmCC');
+    }
+    &#screenshot .dialog_handle::before {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAflBMVEUAAACZmf8AAAAzZmZmZpmZzP/M///A3MAzMwDn59YzM2bM7P+ZmcyZmWZVVVWtqZDAwMCGhoZmZsxmZjNmMzMpKSkWFhYAmcxmmZmmyvBmAMwz//8AM2YAmf9m//9mzP//+/DMMwDMmTOZMwBCQkKZZgBmmcxmzMyZ//////9jje5BAAAAAXRSTlMAQObYZgAAAAFiS0dEKcq3hSQAAAAHdElNRQfiBBMBIhJ1vRPHAAABR0lEQVQ4y72T0VrCMAyF6VlWa1dWN1DYkE5Fwfd/QtOmgyKfXnJyteXsT5p0i8XdpFj4O11RrfVDjWqWMVfu6tE2jlWDljmohSnySzK3ujgqT3BPv8J35ypkreT9dXRGENSoFpZwI36X8lq1qucnQy6L7OxJBuTJRoddOZsU87ZbrdfPL9FBXrVkNz2YgK3WA7gadRj7PqIyoe0VmIDtbjdA8rEJdlAmkBBEtITBq9pHBzKBNpEgAjUY92FKDpSElQRowKjewpQNQtgWAyCfDGGCHQoCzQJDRhVCYEJT9DBPOBumMPFHuiB4F0/hkoOnMHGeT0GXHpwH3j+QGDBtnMMQt1EQgMMBUgXjJ68mbavo4SuWkD6oWJZXlAk5dz6MrNuSioR+PsXlYmTDQnZczOl40t+n4zFuVa5cvj9nychg8c9/cl/9AMn2GOt+eJTdAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTA0LTE5VDAxOjM0OjE4LTA0OjAwm26U/QAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wNC0xOVQwMTozNDoxOC0wNC0xOVQwMTozNDoxOC0wNDowMOozLEEAAAAASUVORK5II=');
+    }
+}

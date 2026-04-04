@@ -1,0 +1,107 @@
+@use "../../abstracts/mixins" as styles;
+
+// about dialog
+dialog#about {
+    min-width: 460px;
+    min-height: 420px;
+    max-width: 460px;
+    max-height: 420px;
+    h4 {
+        font-size: 11px;
+        margin-block: 0;
+        border-top: none;
+        padding-top: 12px;
+        text-align: left;
+        &:nth-child(6) {
+            text-transform: capitalize;
+
+            &::after {
+                content: ":";
+            }
+        }
+    }
+    ul.multi_column_list {
+        column-count: 3;
+        &:nth-child(7) {
+            column-count: 2;
+        }
+        & > li {
+            text-align: left;
+            line-height: 16.5px;
+            margin-bottom: 0;
+        }
+    }
+
+    & content {
+        padding-inline: 40px 30px;
+        padding-bottom: 6px;
+        & > div {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            margin-top: 92px;
+            height: 264px;
+            & > p:nth-child(2)::before {
+                content: "Blockbench\A";
+                white-space: pre;
+            }
+
+            & > p:nth-child(5) {
+                margin-top: 12px;
+            }
+
+            & > * {
+                order: 40;
+            }
+        }
+        p {
+            text-align: left;
+        }
+    }
+
+    #about_page_title {
+        order: 1;
+        width: 346px;
+        position: fixed;
+        margin-top: -92px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--color-border);
+        & > img {
+            filter: brightness(0) saturate(100%) invert(10%) sepia(100%) saturate(9000%) hue-rotate(248deg);
+        }
+    }
+
+    div.socials {
+        background-color: transparent;
+        gap: 6px;
+        order: 5;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        padding-block: 4px 12px;
+        margin-top: -32px;
+
+        position: fixed;
+        margin-left: -48px;
+        a {
+            @include styles.clickable($sunken: false, $subtle: true);
+            padding: 6px;
+            & > label {
+                display: none;
+            }
+            & i, &:hover i {
+                font-size: 16px;
+                display: inline-block;
+                color: var(--color-accent) !important;
+            }
+
+            & > p {
+                flex: 1;
+            }
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+}

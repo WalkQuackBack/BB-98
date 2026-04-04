@@ -1,0 +1,77 @@
+@use "../abstracts/mixins" as styles;
+
+.sp-color {
+    right: 20px;
+    cursor: default;
+    &:active {
+        cursor: crosshair;
+        .sp-dragger {
+            opacity: 0.3;
+            mix-blend-mode: normal;
+        }
+    }
+    &::after {
+        content: "";
+        @include styles.border($sunken: true, $subtle: false);
+        position: absolute;
+        inset: 0;
+    }
+}
+
+.sp-hue {
+    width: 16px;
+    &::after {
+        content: "";
+        @include styles.border($sunken: true, $subtle: false);
+        position: absolute;
+        inset: 0;
+    }
+}
+
+.sp-dragger {
+    background: transparent;
+    border: none;
+    margin-top: 7px;
+    margin-left: -4px;
+    mix-blend-mode: difference;
+    &::before, &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background: #ffffff;
+    }
+
+    &::after {
+        transform: rotate(90deg);
+    }
+}
+
+.sp-replacer {
+    @include styles.clickable($sunken: true, $subtle: false);
+    margin: 0;
+    cursor: default;
+    padding: 0;
+    width: 18px;
+    height: 15px;
+    background: var(--color-ui);
+    color: var(--color-text);
+}
+
+.sp-slider {
+    border-left-color: transparent;
+    border-width: 6px;
+    right: -6px;
+    margin-top: -4px;
+}
+
+.sp-preview {
+    height: 11px;
+    width: 14px;
+    margin: 2px;
+}
+
+.sp-dd {
+    display: none;
+}

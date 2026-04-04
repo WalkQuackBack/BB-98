@@ -1,0 +1,12 @@
+@use "../../abstracts/mixins" as styles;
+
+// keybindings dialog
+dialog#keybindings {
+    .dialog_wrapper {
+        min-height: 0;
+    }
+}
+
+.keybind_line > div.keybindslot {
+    background-color: #ffffff;
+}

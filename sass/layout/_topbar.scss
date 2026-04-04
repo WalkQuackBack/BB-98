@@ -1,4 +1,4 @@
-@use "../foundation/_styles";
+@use "../abstracts/mixins" as styles;
 header {
     @include styles.border($sunken: false, $subtle: false);
     height: 40px;
