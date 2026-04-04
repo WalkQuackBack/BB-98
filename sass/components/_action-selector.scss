@@ -1,0 +1,123 @@
+@use "../abstracts/mixins" as styles;
+
+#action_selector {
+    height: 24px;
+    box-shadow: 0 0 0 1920px rgba(59, 59, 59, 0.5);
+    background-color: var(--color-ui);
+    
+    & > .tool {
+        height: 100%;
+        margin: 0;
+        padding-top: 0;
+        background-color: var(--color-ui);
+        @include styles.clickable($sunken: false, $subtle: true);
+    }
+
+    #action_search_bar_icon {
+        @include styles.clickable($sunken: false, $subtle: true);
+        right: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    & > input {
+        width: calc(100% - 48px);
+        height: 100%;
+        padding: 3px 4px;
+        border: none;
+        background-color: var(--color-bright_ui);
+        color: var(--color-text);
+        font-family: inherit;
+        font-size: 11px;
+        
+        &:focus {
+            outline: none;
+        }
+    }
+
+    #action_selector_list {
+        background: transparent;
+        box-shadow: none;
+        margin-left: 0;
+        
+        & > div {
+            @include styles.border($sunken: false, $subtle: false);
+            background-color: var(--color-ui);
+            position: fixed;
+            padding: 2px 6px;
+            width: 340px;
+            margin-top: 4px;
+            font-size: 11px;
+            color: var(--color-text);
+            
+            &:empty {
+                visibility: hidden;
+            }
+        }
+
+        & > ul {
+            @include styles.border($sunken: false, $subtle: false);
+            color: var(--color-text);
+            background-color: var(--color-ui);
+            border: 1px solid var(--color-ui);
+            padding: 2px;
+            
+            &:empty {
+                visibility: hidden;
+            }
+            
+            & > li {
+                height: 22px;
+                padding-left: 18px;
+                display: flex;
+                align-items: center;
+                cursor: default;
+                
+                &.selected {
+                    background-color: var(--Hilight);
+                    color: var(--HilightText);
+                }
+                
+                & > i,
+                & > i[class^="icon-"]:not(.fa),
+                & > img.icon {
+                    margin-left: -12px;
+                    font-size: 16px;
+                    width: 16px;
+                    height: 16px;
+                    image-rendering: pixelated;
+                    
+                    &.fa_big {
+                        font-size: 14px;
+                    }
+                }
+                
+                span {
+                    font-size: 11px;
+                    padding: 0 4px;
+                }
+                
+                label {
+                    font-size: 10px;
+                    opacity: 0.7;
+                    margin-left: auto;
+                    padding-right: 4px;
+                }
+            }
+        }
+    }
+
+    .action_selector_type_overlay {
+        background-color: #FFFFFF;
+        height: 20px;
+        opacity: 0.3;
+        top: 2px;
+        left: 24px;
+        padding-inline-end: 2px;
+        mix-blend-mode: lighten;
+    }
+}
